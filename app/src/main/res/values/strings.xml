@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">assignment1</string>
+    <string name="mengrong">GianMengRong</string>
+    <string name="wesley">Wesley Chiau Yan Jun</string>
+    <string name="jon">Jon Tan Jun Ting</string>
+    <string name="keefe">Keefe Christian Lee Kit Onn</string>
+    <string name="minyao">Phua Min Yao</string>
+    <string name="lynette">Lynette Lim Xinyu</string>
+
+    <string name="mengrong_info">aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
+    <string name="wesley_info">An Unapologetic problem solver. Total tv ninja. Subtly charming social media enthusiast.</string>
+    <string name="jon_info">A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
+    <string name="keefe_info">An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
+    <string name="minyao_info">Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
+    <string name="lynette_info">Certified explorer. Music ninja. Subtly charming writer. Avid gamer. Web specialist.</string>
 </resources>

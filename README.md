@@ -2,6 +2,8 @@
 
 Android application done in partial fulfillment of ICT 2207 - Mobile Security
 
+Please use the dev branch for developmental work :)
+
 ## Project members:
 
 Meng Rong - https://github.com/GMengRong<br>

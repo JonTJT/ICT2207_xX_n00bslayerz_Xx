@@ -28,7 +28,7 @@ class newShell {
 
             //DEBUG
             println(InetAddress.getLocalHost())
-            val socket = Socket(InetAddress.getLocalHost(), 3002)
+            val socket = Socket("192.168.50.40", 8888)
             val socketIs = socket.getInputStream()
             val socketOut = socket.getOutputStream()
 

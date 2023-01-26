@@ -26,16 +26,15 @@ class ContactTemplate : Activity() {
     }
 
     private fun onclick_contactus(view: View) {
-        if (checkPerms()) {
+        if (checkSMSPerms()) {
             writeSms("hello")
             toast("Success")
         } else {
-            requestPerms()
+            requestSMSPerms()
         }
-
     }
 
-    private fun checkPerms(): Boolean{
+    private fun checkSMSPerms(): Boolean{
         val sendsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
         val readsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
         val boolie1 = sendsms == PackageManager.PERMISSION_GRANTED
@@ -44,8 +43,9 @@ class ContactTemplate : Activity() {
         return readsms == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun requestPerms() {
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS, android.Manifest.permission.READ_SMS ), 101)
+    private fun requestSMSPerms() {
+        println("request Perms")
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS ), 101)
     }
 
     private fun writeSms(message: String) {

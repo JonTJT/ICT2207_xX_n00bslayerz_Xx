@@ -3,11 +3,13 @@ package com.example.assignment1
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,6 +27,7 @@ class ProfileTemplate : AppCompatActivity() {
         renderInfo(id)
 
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
+        findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
     }
 
     private fun renderInfo(id: Int) {
@@ -38,6 +41,15 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
 
+    private fun contactUs(view: View) {
+        if (checkSMSPerms()) {
+            writeSms("hello")
+            toast("Success")
+        } else {
+            requestSMSPerms()
+        }
+    }
+
     private fun chooseFile(view: View) {
         fileSelector()
 //        if (checkPerms()) {
@@ -48,7 +60,7 @@ class ProfileTemplate : AppCompatActivity() {
 //        }
     }
 
-    private fun checkPerms(): Boolean{
+    private fun checkFileStoragePerms(): Boolean{
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
         {
             //Android is 11(R) or above
@@ -62,7 +74,7 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
 
-    private fun requestPerms() {
+    private fun requestFileStoragePerms() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             //Android is 11(R) or above
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -76,6 +88,26 @@ class ProfileTemplate : AppCompatActivity() {
                 100
             )
         }
+    }
+
+    private fun checkSMSPerms(): Boolean{
+        val sendsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
+        val readsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
+        val boolie1 = sendsms == PackageManager.PERMISSION_GRANTED
+        val boolie2 = readsms == PackageManager.PERMISSION_GRANTED
+        println("$boolie1 $boolie2")
+        return readsms == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestSMSPerms() {
+        println("request Perms")
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS ), 101)
+    }
+
+    private fun writeSms(message: String) {
+        val smsIntent : Intent = Uri.parse("smsto:" + 91234567).let { number -> Intent(Intent.ACTION_VIEW, number)}
+        smsIntent.putExtra("sms_body", message)
+        startActivity(smsIntent)
     }
 
     private val selectorARL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

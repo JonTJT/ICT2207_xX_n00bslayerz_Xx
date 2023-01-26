@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.eduBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.enterBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.financeBtn).setOnClickListener(::profile)
-        findViewById<TextView>(R.id.fnbBtn).setOnClickListener(::profile)
+        findViewById<TextView>(R.id.fnbBtn).setOnClickListener(::contactus)
     }
 
     private fun clickName(view: View) {
@@ -42,6 +42,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun profile(view: View) {
         val intent = Intent(this@MainActivity, ProfileTemplate::class.java)
+        intent.putExtra("id", view.id)
+        startActivity(intent)
+    }
+
+    private fun contactus(view: View) {
+        val intent = Intent(this@MainActivity, ContactTemplate::class.java)
         intent.putExtra("id", view.id)
         startActivity(intent)
     }

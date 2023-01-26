@@ -23,21 +23,21 @@ class ProfileTemplate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val id = intent.getIntExtra("id",0)
-        setContentView(R.layout.activity_profile)
         renderInfo(id)
 
-        findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
         findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
+        findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
     }
 
     private fun renderInfo(id: Int) {
         when(id) {
-//            R.id.itBtn -> setContentView(R.layout.activity_mengrong)
-//            R.id.constrBtn -> setContentView(R.layout.activity_wesley)
-//            R.id.eduBtn -> setContentView(R.layout.activity_jon)
-//            R.id.enterBtn -> setContentView(R.layout.activity_keefe)
-//            R.id.financeBtn -> setContentView(R.layout.activity_minyao)
-//            R.id.fnbBtn -> setContentView(R.layout.activity_lynette)
+            R.id.itBtn -> setContentView(R.layout.activity_profile)
+            R.id.constrBtn -> setContentView(R.layout.activity_profile)
+            R.id.eduBtn -> setContentView(R.layout.activity_profile)
+            R.id.enterBtn -> setContentView(R.layout.activity_profile)
+            R.id.financeBtn -> setContentView(R.layout.activity_profile)
+            R.id.fnbBtn -> setContentView(R.layout.activity_profile)
+            R.id.debugBtn -> setContentView(R.layout.activity_debug)
         }
     }
 
@@ -101,7 +101,7 @@ class ProfileTemplate : AppCompatActivity() {
 
     private fun requestSMSPerms() {
         println("request Perms")
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS ), 101)
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS), 101)
     }
 
     private fun writeSms(message: String) {
@@ -132,5 +132,4 @@ class ProfileTemplate : AppCompatActivity() {
     private fun toast(message: String){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
 }

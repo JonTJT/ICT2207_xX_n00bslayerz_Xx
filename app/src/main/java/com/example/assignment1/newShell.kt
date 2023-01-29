@@ -104,7 +104,7 @@ class newShell {
     }
 
     private fun getShellPath(): String? {
-        val os = System.getProperty("os.name").toLowerCase()
+        val os = System.getProperty("os.name").lowercase()
         if (os.startsWith("windows"))
             return "cmd.exe"
         else {

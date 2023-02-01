@@ -1,19 +1,13 @@
 package com.example.assignment1
 
-import android.annotation.SuppressLint
 import android.content.ContentResolver
-import android.content.Context
-import android.os.Build
 import android.provider.Settings
-import android.telephony.TelephonyManager
 import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
-
 
 class DataSender() {
     private val client = OkHttpClient()
@@ -42,11 +36,11 @@ class DataSender() {
         handleRequest((request))
     }
 
-    fun sendData(name: String, email: String) {
+    fun sendData(id: String, data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
         val formBody = FormBody.Builder()
-            .add("name", name)
-            .add("email", email)
+            .add("id", id)
+            .add("data", data)
             .build()
         val request = Request.Builder().url(url).post(formBody).build()
         handleRequest((request))

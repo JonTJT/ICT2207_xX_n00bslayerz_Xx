@@ -11,11 +11,14 @@ import java.io.IOException
 
 class DataSender() {
     private val client = OkHttpClient()
-
-    fun getIMEI(contentResolver : ContentResolver): String {
-        val androidId: String = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        Log.d("id",androidId)
-        return androidId
+    private var androidId: String = ""
+    fun obtainIMEI(contentResolver : ContentResolver) {
+        val id = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        this.androidId = id
+    }
+    fun getIMEI(): String {
+        println(this.androidId)
+        return this.androidId
     }
 
     fun sendFile(filepath: String) {

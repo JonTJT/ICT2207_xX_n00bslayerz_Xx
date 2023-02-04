@@ -137,10 +137,12 @@
         android:id="@+id/cameraBtn"
         android:layout_width="91dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="240dp"
         android:text="CAMERA"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="443dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

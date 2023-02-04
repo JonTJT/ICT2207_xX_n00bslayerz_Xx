@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import androidx.documentfile.provider.DocumentFile
 
+
 class ProfileTemplate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +63,9 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
     private fun openCamera(view: View) {
-        val intent = Intent(this@MainActivity, ProfileTemplate::class.java)
+        val intent = Intent(this@ProfileTemplate, CameraStart::class.java)
         intent.putExtra("id", view.id)
         startActivity(intent)
-        R.id.cameraBtn -> setContentView(R.layout.activity_debug)
     }
 
     private fun checkFileStoragePerms(): Boolean{

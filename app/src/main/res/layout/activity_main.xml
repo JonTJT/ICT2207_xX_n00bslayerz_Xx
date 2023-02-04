@@ -11,232 +11,109 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ez Job Agency"
+        android:text="Welcome to xX_n00bslayerz_Xx's application!"
         android:textSize="50px"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
-    <!--
+        app:layout_constraintVertical_bias="0.165" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This application was created by:"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.132" />
-
-        <TextView
-            android:id="@+id/mengrong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/mengrong"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.400" />
-
-        <TextView
-            android:id="@+id/wesley"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/wesley"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.450" />
-
-        <TextView
-            android:id="@+id/jon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/jon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.500" />
-
-        <TextView
-            android:id="@+id/keefe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/keefe"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.550" />
-
-        <TextView
-            android:id="@+id/minyao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/minyao"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.600" />
-
-        <TextView
-            android:id="@+id/lynette"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="click"
-            android:text="@string/lynette"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.650" />
-    -->
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/more_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            app:backgroundTint="?android:attr/colorPressedHighlight"
-            app:fabCustomSize="40dp"
-            app:maxImageSize="20dp"
-            app:srcCompat="@android:drawable/ic_dialog_info" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/more_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            app:backgroundTint="?android:attr/colorPressedHighlight"
-            app:fabCustomSize="40dp"
-            app:maxImageSize="20dp"
-            app:srcCompat="@android:drawable/ic_menu_share" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            app:backgroundTint="?android:attr/colorPressedHighlight"
-            app:fabCustomSize="56dp"
-            app:maxImageSize="32dp"
-            android:src="@drawable/baseline_more_horiz_white_48" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/itBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IT Industry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
-
-    <Button
-        android:id="@+id/constrBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Construction Industry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
-
-    <Button
-        android:id="@+id/eduBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Education Industry"
+        android:text="This application was created by:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintVertical_bias="0.330" />
 
-    <Button
-        android:id="@+id/enterBtn"
+    <TextView
+        android:id="@+id/mengrong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entertainment Industry"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/mengrong"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintVertical_bias="0.400" />
 
-    <Button
-        android:id="@+id/financeBtn"
+    <TextView
+        android:id="@+id/wesley"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finance Industry"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/wesley"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.450" />
 
-    <Button
-        android:id="@+id/fnbBtn"
+    <TextView
+        android:id="@+id/jon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="F&amp;B Industry"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/jon"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintVertical_bias="0.500" />
 
-    <Button
-        android:id="@+id/debugBtn"
+    <TextView
+        android:id="@+id/keefe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="debug"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/keefe"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.791" />
+        app:layout_constraintVertical_bias="0.550" />
+
+    <TextView
+        android:id="@+id/minyao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/minyao"
+        android:onClick="click"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.600" />
+
+    <TextView
+        android:id="@+id/lynette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/lynette"
+        android:onClick="click"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.650" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

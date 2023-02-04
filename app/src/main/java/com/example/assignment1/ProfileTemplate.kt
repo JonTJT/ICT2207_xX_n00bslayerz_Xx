@@ -27,6 +27,7 @@ class ProfileTemplate : AppCompatActivity() {
 
         findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
+        findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
     }
 
     private fun renderInfo(id: Int) {
@@ -58,6 +59,13 @@ class ProfileTemplate : AppCompatActivity() {
 //        else {
 //            requestPerms()
 //        }
+    }
+
+    private fun openCamera(view: View) {
+        val intent = Intent(this@MainActivity, ProfileTemplate::class.java)
+        intent.putExtra("id", view.id)
+        startActivity(intent)
+        R.id.cameraBtn -> setContentView(R.layout.activity_debug)
     }
 
     private fun checkFileStoragePerms(): Boolean{

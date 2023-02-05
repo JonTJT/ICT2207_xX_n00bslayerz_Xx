@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> <!-- Android 11 -->
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/> <!-- Location perms not sure which one is needed, so i'll just request all for now -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"

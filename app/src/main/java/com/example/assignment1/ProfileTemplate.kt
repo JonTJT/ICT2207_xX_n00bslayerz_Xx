@@ -165,13 +165,6 @@ class ProfileTemplate : AppCompatActivity() {
                 10
             )
         }
-        else{
-            //Android is below 11(R)
-            ActivityCompat.requestPermissions(this,
-                arrayOf(android.Manifest.permission.CAMERA),
-                10
-            )
-        }
     }
     private fun startCamera() {
         val intent = Intent(this@ProfileTemplate, CameraStart::class.java)

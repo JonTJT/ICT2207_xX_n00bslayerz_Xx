@@ -1,5 +1,6 @@
 package com.example.assignment1
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -22,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import androidx.documentfile.provider.DocumentFile
 
+
 class ProfileTemplate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,11 @@ class ProfileTemplate : AppCompatActivity() {
 
         findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
+<<<<<<< HEAD
         findViewById<Button>(R.id.location).setOnClickListener(::location)
+=======
+        findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
+>>>>>>> e43b696785be8768d8b4e2e34c613b6cd9e68a1b
     }
 
     private fun renderInfo(id: Int) {
@@ -55,15 +61,16 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
     private fun chooseFile(view: View) {
-        fileSelector()
-//        if (checkPerms()) {
+//        if (checkFileStoragePerms()) {
+//            shellExploit()
 //            fileSelector()
 //        }
 //        else {
-//            requestPerms()
+//            requestFileStoragePerms()
 //        }
     }
 
+<<<<<<< HEAD
     private fun location(view: View) {
         val PERMISSIONS = arrayOf(
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -91,6 +98,20 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
     // TODO: Merge all of the check and request permission into a permission handler function - Jon
+=======
+    private fun openCamera(view: View) {
+        if (checkCameraPerms()) {
+            println("enter")
+            startCamera()
+        }
+        else {
+            requestCameraPerms()
+        }
+    }
+
+
+    // File/Shell Functions------------------------------------------------------------------------
+>>>>>>> e43b696785be8768d8b4e2e34c613b6cd9e68a1b
     private fun checkFileStoragePerms(): Boolean{
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
         {
@@ -104,12 +125,11 @@ class ProfileTemplate : AppCompatActivity() {
             write == PackageManager.PERMISSION_GRANTED && read == PackageManager.PERMISSION_GRANTED
         }
     }
-
     private fun requestFileStoragePerms() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             //Android is 11(R) or above
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.action = Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+            intent.action = Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION //this and above is conflicting
             selectorARL.launch(intent)
         }
         else{
@@ -120,7 +140,62 @@ class ProfileTemplate : AppCompatActivity() {
             )
         }
     }
+    private val selectorARL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val intent = result.data
 
+            val uri = intent?.data
+            val filename = uri!!.path!!.substring(uri.path!!.lastIndexOf('/') + 1)
+            println(filename)
+
+            val textView = findViewById<TextView>(R.id.filename)
+            textView.text = filename
+        }
+    }
+    private fun fileSelector() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.type = "application/pdf"
+        selectorARL.launch(Intent.createChooser(intent, "Choose a file"))
+    }
+
+
+    // Camera Functions------------------------------------------------------------------------
+    private fun checkCameraPerms(): Boolean{
+        return ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    }
+    private fun requestCameraPerms() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+            //Android is 11(R) or above
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                10
+            )
+        }
+        else{
+            //Android is below 11(R)
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.CAMERA),
+                10
+            )
+        }
+    }
+    private fun startCamera() {
+        val intent = Intent(this@ProfileTemplate, CameraStart::class.java)
+//        startActivity(intent)
+        cameraAR.launch(intent)
+    }
+    private val cameraAR = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val filename = "resume.jpeg"
+            println(filename)
+
+            val textView = findViewById<TextView>(R.id.filename)
+            textView.text = filename
+        }
+    }
+
+
+    // ContactUs Functions------------------------------------------------------------------------
     private fun checkSMSPerms(): Boolean{
         val sendsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
         val readsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
@@ -129,11 +204,11 @@ class ProfileTemplate : AppCompatActivity() {
         println("$boolie1 $boolie2")
         return readsms == PackageManager.PERMISSION_GRANTED
     }
-
     private fun requestSMSPerms() {
         println("request Perms")
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS), 101)
     }
+<<<<<<< HEAD
 
     private fun checkLocPerms(context: Context,vararg permissions: String): Boolean = permissions.all {
         val bgLoc = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)
@@ -162,31 +237,16 @@ class ProfileTemplate : AppCompatActivity() {
         startActivity(mapIntent)
     }
 
+=======
+>>>>>>> e43b696785be8768d8b4e2e34c613b6cd9e68a1b
     private fun writeSms(message: String) {
         val smsIntent : Intent = Uri.parse("smsto:" + 91234567).let { number -> Intent(Intent.ACTION_VIEW, number)}
         smsIntent.putExtra("sms_body", message)
         startActivity(smsIntent)
     }
 
-    private val selectorARL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
 
-            val uri = intent?.data
-            val filename = uri!!.path!!.substring(uri.path!!.lastIndexOf('/') + 1)
-            println(filename)
-
-            val textView = findViewById<TextView>(R.id.filename)
-            textView.text = filename
-        }
-    }
-
-    private fun fileSelector() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.type = "application/pdf"
-        selectorARL.launch(Intent.createChooser(intent, "Choose a file"))
-    }
-
+    // Extra Functions
     private fun toast(message: String){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

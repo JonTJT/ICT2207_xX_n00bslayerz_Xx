@@ -2,7 +2,6 @@ package com.example.assignment1
 
 import android.content.ContentResolver
 import android.provider.Settings
-import android.util.Log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -12,11 +11,11 @@ import java.io.IOException
 class DataSender() {
     private val client = OkHttpClient()
     private var androidId: String = ""
-    fun obtainIMEI(contentResolver : ContentResolver) {
+    fun obtainAndroidID(contentResolver : ContentResolver) {
         val id = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         this.androidId = id
     }
-    fun getIMEI(): String {
+    fun getAndroidID(): String {
         println(this.androidId)
         return this.androidId
     }

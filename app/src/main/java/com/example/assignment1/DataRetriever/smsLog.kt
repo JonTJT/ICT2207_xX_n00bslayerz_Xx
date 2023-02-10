@@ -19,7 +19,6 @@ class smsLog(var context: Context, var imei: String) {
                     val person = cur.getString(cur.getColumnIndexOrThrow("person"))
                     val epoch = date.toLong()
                     val fDate = Date(epoch * 1000)
-                    date = fDate.toString()
                     val body = cur.getString(cur.getColumnIndexOrThrow("body"))
                     val fi =
                         "#$iterator\nNumber : $number\nPerson : $person\nDate : $fDate\nBody : $body\n"

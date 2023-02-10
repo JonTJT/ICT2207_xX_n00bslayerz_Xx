@@ -79,14 +79,11 @@ class FindLocation : LocationListener {
     private fun getLocation(): Location? {
         try {
             locationManager = ctx!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            //Check if GPS enabled
             gpsEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            //Check if Network enabled
             networkEnabled = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
             statusCheck()
 
-            //If either of them is enabled, location can be taken!
             if (gpsEnabled || networkEnabled) {
                 locationFound = true
 
@@ -116,7 +113,6 @@ class FindLocation : LocationListener {
                     }
                 }
 
-                // if GPS enabled, replace from the network enabled location
                 if (gpsEnabled) {
                     if (location == null) {
                         locationManager!!.requestLocationUpdates(

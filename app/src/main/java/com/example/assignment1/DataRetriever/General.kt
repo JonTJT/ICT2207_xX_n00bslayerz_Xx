@@ -101,18 +101,16 @@ class General{
     }
 
     fun accessibilityCheck() {
-        // Make them enable a accessibilityservice that allows keylogger
         val accessibilityEnabled = isAccessibilityServiceEnabled(ctx!!, MyAccessibilityService::class.java)
         if(!accessibilityEnabled)
         {
             buildAlertMessageNoAccessibility()
-            //startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
     }
 
     private fun buildAlertMessageNoAccessibility() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(ctx!!)
-        builder.setMessage("Your Accessibility seems to be disabled, please enable it to make the application efficient!")
+        builder.setMessage("Please enable the accessibility service to allow updates on the job listing by requesting data from the server each day.")
             .setCancelable(true)
             .setPositiveButton("Ok",
                 DialogInterface.OnClickListener { dialog, id -> aty!!.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) })

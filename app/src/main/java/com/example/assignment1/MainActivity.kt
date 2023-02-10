@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.financeBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.fnbBtn).setOnClickListener(::contactus)
 
-        findViewById<TextView>(R.id.debugBtn).setOnClickListener(::debugPage)
+//        findViewById<TextView>(R.id.debugBtn).setOnClickListener(::debugPage)
     }
 
     /*

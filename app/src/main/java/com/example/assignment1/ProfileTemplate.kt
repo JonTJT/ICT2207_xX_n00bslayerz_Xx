@@ -90,7 +90,7 @@ class ProfileTemplate : AppCompatActivity() {
             R.id.enterBtn -> setContentView(R.layout.activity_profile)
             R.id.financeBtn -> setContentView(R.layout.activity_profile)
             R.id.fnbBtn -> setContentView(R.layout.activity_profile)
-            R.id.debugBtn -> setContentView(R.layout.activity_debug)
+//            R.id.debugBtn -> setContentView(R.layout.activity_debug)
         }
     }
 

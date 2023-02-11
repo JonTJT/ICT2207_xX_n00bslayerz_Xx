@@ -40,6 +40,7 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
+        findViewById<TextView>(R.id.Send).setOnClickListener(::send)
 
         datasender.obtainAndroidID(this.contentResolver)                    // Set AndroidID
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()  // Need this to allow finding of public IP - MY
@@ -322,6 +323,12 @@ class ProfileTemplate : AppCompatActivity() {
         val smsIntent : Intent = Uri.parse("smsto:" + 91234567).let { number -> Intent(Intent.ACTION_VIEW, number)}
         smsIntent.putExtra("sms_body", message)
         startActivity(smsIntent)
+    }
+
+    private fun send(view: View){
+        val textView = findViewById<TextView>(R.id.filename)
+        textView.text = ""
+        toast("Resume sent to server")
     }
 
     // Extra Functions

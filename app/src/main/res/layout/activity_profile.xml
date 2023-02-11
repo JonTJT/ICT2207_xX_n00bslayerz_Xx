@@ -7,172 +7,217 @@
     tools:context=".ProfileTemplate">
 
     <LinearLayout
-        android:id="@+id/profile_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center|center_horizontal"
+            android:text="INDUSTRY"
+            android:textSize="24sp" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView2"
-            android:layout_width="227dp"
-            android:layout_height="227dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
             android:src="@drawable/stock"
-
             app:shapeAppearanceOverlay="@style/circleImageView" />
+
+        <ScrollView
+            android:layout_width="410dp"
+            android:layout_height="177dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#FF360380"
+                    android:text="View Job Location"
+                    android:textSize="11sp"
+                    app:backgroundTint="#FF360380" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Name, info, etc..." />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    tools:text="@string/IT_industry" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
             android:orientation="vertical"
-            >
-        <TextView
-            android:id="@+id/pageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:width="250dp"
-            android:maxWidth="250dp"
-            android:gravity="center|center_horizontal"
-            android:text="Page title"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+            android:paddingLeft="10dp">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:maxWidth="250dp"
-            android:text="name: "
-            android:textAlignment="textStart"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/ResumeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center|center_horizontal"
+                android:text="Apply Now"
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            <TextView
+                android:id="@+id/ResumeDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center|center_horizontal"
+                android:text="Please upload your resume or take a picture of it."
+                android:textSize="12sp" />
 
-            android:maxWidth="250dp"
-            android:text="description: "
-            android:textAlignment="textStart"
-            android:textSize="15sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ResumeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="10dp"
+                    android:text="Upload resume"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/cameraBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="10dp"
+                    android:text="CAMERA"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!-- Right side spacer -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/filename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="30dp"
+                android:text=""
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/Send"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="right"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="60dp"
+                android:text="Send"
+                app:cornerRadius="40dip" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="vertical">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/callUs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+
+                    android:background="#FF5103BF"
+                    android:text="Call Us"
+                    app:backgroundTint="#FF5103BF"
+                    app:cornerRadius="0dip" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+
+                    android:background="#FF360380"
+                    android:text="SMS Us"
+                    app:backgroundTint="#FF360380"
+                    app:cornerRadius="0dip" />
+
+            </TableRow>
+
+        </LinearLayout>
+
     </LinearLayout>
 
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <TextView
-        android:id="@+id/ResumeDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center|center_horizontal"
-        android:text="Be sure to include an updated (.pdf) resume *"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResumeTitle" />
-
-    <TextView
-        android:id="@+id/ResumeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center|center_horizontal"
-        android:text="Apply Now"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-    <Button
-        android:id="@+id/Send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
-        android:text="Send"
-        app:cornerRadius="40dip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/ResumeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Upload"
-        android:textSize="10sp"
-        app:cornerRadius="40dip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResumeDescription" />
-
-    <Button
-        android:id="@+id/contactUs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact Us"
-        app:cornerRadius="40dip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
-
-    <Button
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location"
-        app:cornerRadius="40dip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.816" />
-
-    <TextView
-        android:id="@+id/filename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text=""
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toEndOf="@+id/ResumeBtn"
-        app:layout_constraintTop_toBottomOf="@+id/ResumeDescription" />
-
-    <Button
-        android:id="@+id/cameraBtn"
-        android:layout_width="91dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="240dp"
-        android:text="CAMERA"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

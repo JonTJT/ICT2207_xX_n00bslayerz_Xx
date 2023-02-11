@@ -41,7 +41,7 @@ class ProfileTemplate : AppCompatActivity() {
             renderInfo(id, "")
         }
 
-        findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
+        findViewById<Button>(R.id.callUs).setOnClickListener(::contactUs)
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)

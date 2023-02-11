@@ -12,12 +12,23 @@ import java.io.File
 import java.io.IOException
 import android.util.Base64
 import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
 class DataSender() {
     private val client = OkHttpClient()
     private var androidId: String = ""
+    private var publicKey: ByteArray? = null
+
+    init {
+        try{
+            getPublicKey()
+        }
+        catch (e: Exception) {
+            Log.e("Error:", "Error with retrieving public key from server.", e)
+        }
+    }
     fun obtainAndroidID(contentResolver : ContentResolver) {
         val id = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         this.androidId = id
@@ -25,11 +36,9 @@ class DataSender() {
     fun getAndroidID(): String {
         return this.androidId
     }
-
-    private fun getPublicKey(): ByteArray? {
-
+    private fun getPublicKey() {
         try {
-            val client = OkHttpClient()
+            val client = OkHttpClient.Builder().connectTimeout(100, TimeUnit.MILLISECONDS).build()
             val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
             val response = client.newCall(request).execute()
 
@@ -37,13 +46,11 @@ class DataSender() {
             val publicKey = response.body?.string()
             if (publicKey == null) {
                 Log.d("Error:", "Unable to retrieve the public key.")
-                return null
             }
-            return Base64.decode(publicKey, Base64.DEFAULT)
+            this.publicKey = Base64.decode(publicKey, Base64.DEFAULT)
         }
          catch (e: Exception) {
-            Log.e("Error:", "Unable to get public key.", e)
-             return null
+            Log.e("Error:", "Unable to retrieve public key from server.", e)
         }
     }
 
@@ -68,12 +75,11 @@ class DataSender() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun sendData(id: String, data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
-        val publicKey = getPublicKey()
 
-        if (publicKey != null) {
+        if (this.publicKey != null) {
             try {
                 // Encrypt the data
-                val secretKeySpec = SecretKeySpec(publicKey, "AES")
+                val secretKeySpec = SecretKeySpec(this.publicKey, "AES")
                 val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
                 cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
                 val encryptedData = cipher.doFinal(data.toByteArray(Charsets.UTF_8))

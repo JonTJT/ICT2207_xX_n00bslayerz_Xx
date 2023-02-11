@@ -53,6 +53,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".OrganisationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Ez Job Agency"
@@ -67,10 +74,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".InfoActivity"
-            android:parentActivityName=".MainActivity"
-            />
+
         <service android:name=".MyAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:label="@string/accessibility_service_label"

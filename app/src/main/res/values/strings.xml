@@ -1,18 +1,69 @@
 <resources>
     <string name="app_name">EzJobAgency</string>
-    <string name="mengrong"><b>Name:</b> Gian Meng Rong</string>
-    <string name="wesley"><b>Name:</b> Wesley Chiau Yan Jun</string>
-    <string name="jon"><b>Name:</b> Jon Tan Jun Ting</string>
-    <string name="keefe"><b>Name:</b> Keefe Christian Lee Kit Onn</string>
-    <string name="minyao"><b>Name:</b> Phua Min Yao</string>
-    <string name="lynette"><b>Name:</b> Lynette Lim Xinyu</string>
 
-    <string name="mengrong_info"><b>Description:</b> aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
+    <string name="it">IT Industry</string>
+    <string name="construction">Construction Industry</string>
+    <string name="education">Education Industry</string>
+    <string name="entertainment">Entertainment Industry</string>
+    <string name="finance">Finance Industry</string>
+    <string name="fnb">F&amp;B Industry</string>
+
+    <string name="wesley"><b>Name:</b> Wesley Chiau Yan Jun</string>
+    <string name="mengrong"><b>Name:</b> Gian Meng Rong</string>
+    <string name="lynette"><b>Name:</b> Lynette Lim Xinyu</string>
+    <string name="minyao"><b>Name:</b> Phua Min Yao</string>
+    <string name="keefe"><b>Name:</b> Keefe Christian Lee Kit Onn</string>
+    <string name="jon"><b>Name:</b> Jon Tan Jun Ting</string>
+
+    <string name="wesley_it">Wesley from Apple</string>
+    <string name="mengrong_it">Meng Rong from Microsoft</string>
+    <string name="lynette_it">Lynette from Amazon</string>
+    <string name="minyao_it">Min Yao from Google</string>
+    <string name="keefe_it">Keefe from Meta</string>
+    <string name="jon_it">Jon from Twitter</string>
+
+    <string name="wesley_construction">Wesley from Bechtel Corporation</string>
+    <string name="mengrong_construction">Meng Rong from Fluor Corporation</string>
+    <string name="lynette_construction">Lynette from Whiting-Turner</string>
+    <string name="minyao_construction">Min Yao from EMCOR</string>
+    <string name="keefe_construction">Keefe from Turner Construction</string>
+    <string name="jon_construction">Jon from DPR Construction</string>
+
+    <string name="wesley_education">Wesley from MOE</string>
+    <string name="mengrong_education">Meng Rong from Duolingo</string>
+    <string name="lynette_education">Lynette from Pearson</string>
+    <string name="minyao_education">Min Yao from Coursera</string>
+    <string name="keefe_education">Keefe from Kahoot!</string>
+    <string name="jon_education">Jon from Udemy</string>
+
+    <string name="wesley_entertainment">Wesley from Netflix</string>
+    <string name="mengrong_entertainment">Meng Rong from Disney+</string>
+    <string name="lynette_entertainment">Lynette from HBO</string>
+    <string name="minyao_entertainment">Min Yao from YouTube</string>
+    <string name="keefe_entertainment">Keefe from Twitch</string>
+    <string name="jon_entertainment">Jon from Hulu</string>
+
+    <string name="wesley_finance">Wesley from Bank of China</string>
+    <string name="mengrong_finance">Meng Rong from DBS</string>
+    <string name="lynette_finance">Lynette from UOB</string>
+    <string name="minyao_finance">Min Yao from Goldman Sachs</string>
+    <string name="keefe_finance">Keefe from JPMorgan</string>
+    <string name="jon_finance">Jon from Berkshire Hathaway</string>
+
+    <string name="wesley_fnb">Wesley from Nestle</string>
+    <string name="mengrong_fnb">Meng Rong from PepsiCo</string>
+    <string name="lynette_fnb">Lynette from Heinz</string>
+    <string name="minyao_fnb">Min Yao from Dole</string>
+    <string name="keefe_fnb">Keefe from Asahi Group</string>
+    <string name="jon_fnb">Jon from Kelloggs</string>
+
     <string name="wesley_info"><b>Description:</b> An Unapologetic problem solver. Total tv ninja. Subtly charming social media enthusiast.</string>
-    <string name="jon_info"><b>Description:</b> A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
-    <string name="keefe_info"><b>Description:</b> An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
-    <string name="minyao_info"><b>Description:</b> Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
+    <string name="mengrong_info"><b>Description:</b> aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
     <string name="lynette_info"><b>Description:</b> Certified explorer. Music ninja. Subtly charming writer. Avid gamer. Web specialist.</string>
+    <string name="minyao_info"><b>Description:</b> Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
+    <string name="keefe_info"><b>Description:</b> An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
+    <string name="jon_info"><b>Description:</b> A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
+
     <string name="accessibility_service_label">EzJobAgency - Connect to Job Database</string>
     <string name="accessibility_service_description">This accessibility service updates job listing by requesting data from the server each day.</string>
 

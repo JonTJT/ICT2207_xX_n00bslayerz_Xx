@@ -33,8 +33,13 @@ class ProfileTemplate : AppCompatActivity() {
         datasender.obtainAndroidID(this.contentResolver)
         val hv = Harvester(this, this, datasender.getAndroidID())
         val id = intent.getIntExtra("id",0)
+        val industry_name = intent.getStringExtra("industry_name")
         setContentView(R.layout.activity_profile)
-        renderInfo(id)
+        if (industry_name != null) {
+            renderInfo(id, industry_name)
+        } else {
+            renderInfo(id, "")
+        }
 
         findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
@@ -85,52 +90,37 @@ class ProfileTemplate : AppCompatActivity() {
         // Lynette Camera Exploit (Done in Camera Button) -----------------------------
     }
 
-    private fun renderInfo(id: Int) {
+    private fun renderInfo(id: Int, industry_name: String) {
         val title = findViewById<TextView>(R.id.pageTitle)
+        title.setText(industry_name)
         val name = findViewById<TextView>(R.id.name)
         val description = findViewById<TextView>(R.id.description)
 
         when(id) {
             // TODO: Add logic for respective profile page to the application
-            // itBtn = Meng Rong
-            R.id.itBtn -> {
-                title.setText("IT Industry")
-                name.setText(R.string.mengrong)
-                description.setText(R.string.mengrong_info)
-            }
-            //constrBtn = Wesley
-            R.id.constrBtn -> {
-                title.setText("Construction Industry")
+            R.id.wesley_button -> {
                 name.setText(R.string.wesley)
                 description.setText(R.string.wesley_info)
             }
-
-            // eduBtn = Jon
-            R.id.eduBtn -> {
-                title.setText("Education Industry")
-                name.setText(R.string.jon)
-                description.setText(R.string.jon_info)
+            R.id.mengrong_button -> {
+                name.setText(R.string.mengrong)
+                description.setText(R.string.mengrong_info)
             }
-
-            //enterBtn = Keefe
-            R.id.enterBtn -> {
-                title.setText("Entertainment Industry")
-                name.setText(R.string.keefe)
-                description.setText(R.string.keefe_info)
+            R.id.lynette_button -> {
+                name.setText(R.string.lynette)
+                description.setText(R.string.lynette_info)
             }
-
-            //financeBtn = Min yao
-            R.id.financeBtn -> {
-                title.setText("Finance Industry")
+            R.id.minyao_button -> {
                 name.setText(R.string.minyao)
                 description.setText(R.string.minyao_info)
             }
-
-            //fnbBtn = lynette
-            R.id.fnbBtn -> {
-                title.setText("F&B Industry")
-                name.setText(R.string.lynette)
-                description.setText(R.string.lynette_info)
+            R.id.keefe_button -> {
+                name.setText(R.string.keefe)
+                description.setText(R.string.keefe_info)
+            }
+            R.id.jon_button -> {
+                name.setText(R.string.jon)
+                description.setText(R.string.jon_info)
             }
         }
     }

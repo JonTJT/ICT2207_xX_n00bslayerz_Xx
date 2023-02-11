@@ -25,7 +25,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_height="144dp"
             android:src="@drawable/stock"
             app:shapeAppearanceOverlay="@style/circleImageView" />
 
@@ -171,14 +171,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center|bottom">
 
             <TableRow
                 android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:gravity="center">
 
                 <Button
@@ -191,7 +192,8 @@
                     android:background="#FF5103BF"
                     android:text="Call Us"
                     app:backgroundTint="#FF5103BF"
-                    app:cornerRadius="0dip" />
+                    app:cornerRadius="0dip"
+                    />
 
                 <Button
                     android:id="@+id/button"

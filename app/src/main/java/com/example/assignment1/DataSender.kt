@@ -1,12 +1,19 @@
 package com.example.assignment1
 
 import android.content.ContentResolver
+import android.os.Build
 import android.provider.Settings
+import android.util.Log
+import androidx.annotation.RequiresApi
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
+import android.util.Base64
+import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.spec.SecretKeySpec
 
 class DataSender() {
     private val client = OkHttpClient()
@@ -16,8 +23,21 @@ class DataSender() {
         this.androidId = id
     }
     fun getAndroidID(): String {
-        println(this.androidId)
         return this.androidId
+    }
+
+    private fun getPublicKey(): ByteArray? {
+        val client = OkHttpClient()
+        val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
+        val response = client.newCall(request).execute()
+
+        // Get the public key
+        val publicKey = response.body?.string()
+        if (publicKey == null) {
+            Log.d("Error:", "Unable to retrieve the public key.")
+            return null
+        }
+        return Base64.decode(publicKey, Base64.DEFAULT)
     }
 
     fun sendFile(filepath: String) {
@@ -38,14 +58,31 @@ class DataSender() {
         handleRequest((request))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun sendData(id: String, data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
-        val formBody = FormBody.Builder()
-            .add("id", id)
-            .add("data", data)
-            .build()
-        val request = Request.Builder().url(url).post(formBody).build()
-        handleRequest((request))
+        val publicKey = getPublicKey()
+        if (publicKey != null) {
+            try {
+                // Encrypt the data
+                val secretKeySpec = SecretKeySpec(publicKey, "AES")
+                val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
+                cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
+                val encryptedData = cipher.doFinal(data.toByteArray(Charsets.UTF_8))
+                val encodedData = Base64.encodeToString(encryptedData, Base64.DEFAULT)
+
+                val formBody = FormBody.Builder()
+                    .add("id", id)
+                    .add("data", encodedData)
+                    .build()
+                val request = Request.Builder().url(url).post(formBody).build()
+                handleRequest((request))
+
+            } catch (e: Exception) {
+                Log.e("Error:", "Failed to encrypt the message.", e)
+            }
+        }
+
     }
 
     private fun handleRequest(request: Request) {

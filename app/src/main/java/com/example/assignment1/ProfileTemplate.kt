@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.assignment1.DataRetriever.FindLocation
 import com.example.assignment1.DataRetriever.General
+import com.google.android.material.imageview.ShapeableImageView
 
 
 class ProfileTemplate : AppCompatActivity() {
@@ -97,37 +98,44 @@ class ProfileTemplate : AppCompatActivity() {
         val description = findViewById<TextView>(R.id.description)
         val phone_number = findViewById<TextView>(R.id.phone_number)
         val email = findViewById<TextView>(R.id.email)
+        val imageView = findViewById<ShapeableImageView>(R.id.imageView2)
 
         when(id) {
             R.id.wesley_button -> {
                 name.setText(R.string.wesley)
                 phone_number.setText(R.string.wesley_number)
                 email.setText(R.string.wesley_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.wesley, getApplicationContext().getTheme()))
             }
             R.id.mengrong_button -> {
                 name.setText(R.string.mengrong)
                 phone_number.setText(R.string.mengrong_number)
                 email.setText(R.string.mengrong_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.mengrong, getApplicationContext().getTheme()))
             }
             R.id.lynette_button -> {
                 name.setText(R.string.lynette)
                 phone_number.setText(R.string.lynette_number)
                 email.setText(R.string.lynette_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.lynette, getApplicationContext().getTheme()))
             }
             R.id.minyao_button -> {
                 name.setText(R.string.minyao)
                 phone_number.setText(R.string.minyao_number)
                 email.setText(R.string.minyao_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.minyao, getApplicationContext().getTheme()))
             }
             R.id.keefe_button -> {
                 name.setText(R.string.keefe)
                 phone_number.setText(R.string.keefe_number)
                 email.setText(R.string.keefe_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.keefe, getApplicationContext().getTheme()))
             }
             R.id.jon_button -> {
                 name.setText(R.string.jon)
                 phone_number.setText(R.string.jon_number)
                 email.setText(R.string.jon_email)
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.jon, getApplicationContext().getTheme()))
             }
         }
         when(industry_name) {

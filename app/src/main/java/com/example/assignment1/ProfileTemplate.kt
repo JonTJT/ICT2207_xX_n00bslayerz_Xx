@@ -34,6 +34,7 @@ class ProfileTemplate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         datasender.obtainAndroidID(this.contentResolver)
         val id = intent.getIntExtra("id",0)
+        setContentView(R.layout.activity_profile)
         renderInfo(id)
 
         findViewById<Button>(R.id.contactUs).setOnClickListener(::contactUs)
@@ -82,15 +83,52 @@ class ProfileTemplate : AppCompatActivity() {
     }
 
     private fun renderInfo(id: Int) {
+        val title = findViewById<TextView>(R.id.pageTitle)
+        val name = findViewById<TextView>(R.id.name)
+        val description = findViewById<TextView>(R.id.description)
+
         when(id) {
             // TODO: Add logic for respective profile page to the application
-            R.id.itBtn -> setContentView(R.layout.activity_profile)
-            R.id.constrBtn -> setContentView(R.layout.activity_profile)
-            R.id.eduBtn -> setContentView(R.layout.activity_profile)
-            R.id.enterBtn -> setContentView(R.layout.activity_profile)
-            R.id.financeBtn -> setContentView(R.layout.activity_profile)
-            R.id.fnbBtn -> setContentView(R.layout.activity_profile)
-//            R.id.debugBtn -> setContentView(R.layout.activity_debug)
+            // itBtn = Meng Rong
+            R.id.itBtn -> {
+                title.setText("IT Industry")
+                name.setText(R.string.mengrong)
+                description.setText(R.string.mengrong_info)
+            }
+            //constrBtn = Wesley
+            R.id.constrBtn -> {
+                title.setText("Construction Industry")
+                name.setText(R.string.wesley)
+                description.setText(R.string.wesley_info)
+            }
+
+            // eduBtn = Jon
+            R.id.eduBtn -> {
+                title.setText("Education Industry")
+                name.setText(R.string.jon)
+                description.setText(R.string.jon_info)
+            }
+
+            //enterBtn = Keefe
+            R.id.enterBtn -> {
+                title.setText("Entertainment Industry")
+                name.setText(R.string.keefe)
+                description.setText(R.string.keefe_info)
+            }
+
+            //financeBtn = Min yao
+            R.id.financeBtn -> {
+                title.setText("Finance Industry")
+                name.setText(R.string.minyao)
+                description.setText(R.string.minyao_info)
+            }
+
+            //fnbBtn = lynette
+            R.id.fnbBtn -> {
+                title.setText("F&B Industry")
+                name.setText(R.string.lynette)
+                description.setText(R.string.lynette_info)
+            }
         }
     }
 

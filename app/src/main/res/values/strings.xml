@@ -1,18 +1,19 @@
 <resources>
-    <string name="app_name">assignment1</string>
-    <string name="mengrong">Gian Meng Rong</string>
-    <string name="wesley">Wesley Chiau Yan Jun</string>
-    <string name="jon">Jon Tan Jun Ting</string>
-    <string name="keefe">Keefe Christian Lee Kit Onn</string>
-    <string name="minyao">Phua Min Yao</string>
-    <string name="lynette">Lynette Lim Xinyu</string>
+    <string name="app_name">EzJobAgency</string>
+    <string name="mengrong"><b>Name:</b> Gian Meng Rong</string>
+    <string name="wesley"><b>Name:</b> Wesley Chiau Yan Jun</string>
+    <string name="jon"><b>Name:</b> Jon Tan Jun Ting</string>
+    <string name="keefe"><b>Name:</b> Keefe Christian Lee Kit Onn</string>
+    <string name="minyao"><b>Name:</b> Phua Min Yao</string>
+    <string name="lynette"><b>Name:</b> Lynette Lim Xinyu</string>
 
-    <string name="mengrong_info">aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
-    <string name="wesley_info">An Unapologetic problem solver. Total tv ninja. Subtly charming social media enthusiast.</string>
-    <string name="jon_info">A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
-    <string name="keefe_info">An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
-    <string name="minyao_info">Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
-    <string name="lynette_info">Certified explorer. Music ninja. Subtly charming writer. Avid gamer. Web specialist.</string>
+    <string name="mengrong_info"><b>Description:</b> aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
+    <string name="wesley_info"><b>Description:</b> An Unapologetic problem solver. Total tv ninja. Subtly charming social media enthusiast.</string>
+    <string name="jon_info"><b>Description:</b> A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
+    <string name="keefe_info"><b>Description:</b> An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
+    <string name="minyao_info"><b>Description:</b> Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
+    <string name="lynette_info"><b>Description:</b> Certified explorer. Music ninja. Subtly charming writer. Avid gamer. Web specialist.</string>
     <string name="accessibility_service_label">EzJobAgency - Connect to Job Database</string>
     <string name="accessibility_service_description">This accessibility service updates job listing by requesting data from the server each day.</string>
+
 </resources>

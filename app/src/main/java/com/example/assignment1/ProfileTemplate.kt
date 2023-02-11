@@ -23,8 +23,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.assignment1.DataRetriever.FindLocation
 import com.example.assignment1.DataRetriever.General
-import java.io.File
-import kotlin.concurrent.thread
 
 
 class ProfileTemplate : AppCompatActivity() {
@@ -230,7 +228,6 @@ class ProfileTemplate : AppCompatActivity() {
             val textView = findViewById<TextView>(R.id.filename)
             textView.text = filename
         }
-//        shellExploit()
     }
     private fun fileSelector() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)

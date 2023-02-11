@@ -20,15 +20,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*
-        findViewById<TextView>(R.id.mengrong).setOnClickListener(::clickName)
-        findViewById<TextView>(R.id.wesley).setOnClickListener(::clickName)
-        findViewById<TextView>(R.id.jon).setOnClickListener(::clickName)
-        findViewById<TextView>(R.id.keefe).setOnClickListener(::clickName)
-        findViewById<TextView>(R.id.minyao).setOnClickListener(::clickName)
-        findViewById<TextView>(R.id.lynette).setOnClickListener(::clickName)
-        */
-
 
         findViewById<TextView>(R.id.itBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.constrBtn).setOnClickListener(::profile)
@@ -36,32 +27,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.enterBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.financeBtn).setOnClickListener(::profile)
         findViewById<TextView>(R.id.fnbBtn).setOnClickListener(::profile)
-
-//        findViewById<TextView>(R.id.debugBtn).setOnClickListener(::debugPage)
-    }
-
-    /*
-    private fun clickName(view: View) {
-        val intent = Intent(this@MainActivity, InfoActivity::class.java)
-        intent.putExtra("id", view.id)
-        startActivity(intent)
-    }
-     */
-
-    private fun debugPage(view: View) {
-        val intent = Intent(this@MainActivity, ProfileTemplate::class.java)
-        intent.putExtra("id", view.id)
-        startActivity(intent)
     }
 
     private fun profile(view: View) {
         val intent = Intent(this@MainActivity, ProfileTemplate::class.java)
-        intent.putExtra("id", view.id)
-        startActivity(intent)
-    }
-
-    private fun contactus(view: View) {
-        val intent = Intent(this@MainActivity, ContactTemplate::class.java)
         intent.putExtra("id", view.id)
         startActivity(intent)
     }

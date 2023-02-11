@@ -4,14 +4,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('C:\\Users\\kyudnn\\Desktop\\key.jks')
-            keyPassword 'n00bslayerz'
-            storePassword 'n00bslayerz'
-            keyAlias 'EzJobAgency'
-        }
-    }
     namespace 'com.example.assignment1'
     compileSdk 33
 

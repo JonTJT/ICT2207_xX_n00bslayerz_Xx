@@ -61,7 +61,12 @@ class DataSender() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun sendData(id: String, data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
-        val publicKey = getPublicKey()
+        try {
+            val publicKey = getPublicKey()
+        } catch (e: Exception) {
+            Log.e("Error:", "Unable to get public key.", e)
+        }
+
         if (publicKey != null) {
             try {
                 // Encrypt the data

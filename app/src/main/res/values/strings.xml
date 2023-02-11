@@ -15,6 +15,20 @@
     <string name="keefe"><b>Name:</b> Keefe Christian Lee Kit Onn</string>
     <string name="jon"><b>Name:</b> Jon Tan Jun Ting</string>
 
+    <string name="wesley_number"><b>Phone Number:</b> 9123 4567</string>
+    <string name="mengrong_number"><b>Phone Number:</b> 9234 5678</string>
+    <string name="lynette_number"><b>Phone Number:</b> 9345 6789</string>
+    <string name="minyao_number"><b>Phone Number:</b> 9456 7890</string>
+    <string name="keefe_number"><b>Phone Number:</b> 9567 8901</string>
+    <string name="jon_number"><b>Phone Number:</b> 9678 9012</string>
+
+    <string name="wesley_email"><b>Email:</b> wesley@email.com</string>
+    <string name="mengrong_email"><b>Email:</b> mengrong@email.com</string>
+    <string name="lynette_email"><b>Email:</b> lynette@email.com</string>
+    <string name="minyao_email"><b>Email:</b> minyao@email.com</string>
+    <string name="keefe_email"><b>Email:</b> keefe@email.com</string>
+    <string name="jon_email"><b>Email:</b> jon@email.com</string>
+
     <string name="wesley_it">Wesley from Apple</string>
     <string name="mengrong_it">Meng Rong from Microsoft</string>
     <string name="lynette_it">Lynette from Amazon</string>
@@ -57,12 +71,23 @@
     <string name="keefe_fnb">Keefe from Asahi Group</string>
     <string name="jon_fnb">Jon from Kelloggs</string>
 
-    <string name="wesley_info"><b>Description:</b> An Unapologetic problem solver. Total tv ninja. Subtly charming social media enthusiast.</string>
-    <string name="mengrong_info"><b>Description:</b> aka. Gilbertus Gian Meng Rong. A Hardcore music guru. Alcohol nerd. Lifelong web fanatic. Passionate twitter aficionado. Gamer. Creator. Bacon lover.</string>
-    <string name="lynette_info"><b>Description:</b> Certified explorer. Music ninja. Subtly charming writer. Avid gamer. Web specialist.</string>
-    <string name="minyao_info"><b>Description:</b> Entrepreneur. Beer aficionado. Twitter fanatic. Passionate internet ninja. Alcohol lover.</string>
-    <string name="keefe_info"><b>Description:</b> An Avid introvert. Travel geek. Communicator. Freelance coffee fanatic. Reader. Incurable social media guru. Web nerd. Entrepreneur. Certified analyst. </string>
-    <string name="jon_info"><b>Description:</b> A Hipster-friendly music expert. Professional problem solver. Zombie advocate. Beer aficionado.</string>
+    <string name="it_info"><b>Job Description:</b>
+        Information technology (IT) is one of the world\'s fastest-growing industries and offers various opportunities for advancement and high-paying jobs. Skilled IT workers find work in nearly every industry, giving you the option to pursue a position in an industry you’re most interested in. Understanding the different roles and qualifications within IT can help you plan your next steps to find a position that suits you. </string>
+
+    <string name="construction_info"><b>Job Description:</b>
+        Construction is a general term meaning the art and science to form objects, systems, or organizations. Construction is an industry that includes the erection, maintenance, and repair of buildings and other immobile structures, and the building of roads and service facilities that become integral parts of structures and are essential to their use. In its most widely used context, construction covers the processes involved in delivering buildings, infrastructure and industrial facilities, and associated activities through to the end of their life. Construction includes structural additions and alterations but excludes the building of mobile structures such as trailers and ships. It typically starts with planning, financing, design, execution, builds, and also covers repairs and maintenance and improvement work.</string>
+
+    <string name="education_info"><b>Job Description:</b>
+        The education industry is expanding rapidly and its many businesses are eager for new talent, including experienced professionals and enthusiastic individuals just entering the workforce. The education industry can be described as the collection of organizations and businesses that provide products and services aimed at enhancing the quality of education in society. The education industry consists of schools, colleges, universities, and various private institutions. The education industry provides its students with the knowledge and skills to adapt to a continually changing working world. </string>
+
+    <string name="entertainment_info"><b>Job Description:</b>
+        The media and entertainment industry is an enormous consumer powerhouse, with revenues amounting to about $2 trillion worldwide. More than a third of the industry\'s business originates from the media and entertainment companies in the United States. While business is booming and expanding into new sectors, there are some warning signs to look out for.</string>
+
+    <string name="finance_info"><b>Job Description:</b>
+        The finance industry provides financial services to individuals and also businesses. This economy sector is made up of a variety of financial firms such as banks, investment houses, lenders, finance companies, real estate brokers, and also insurance companies.</string>
+
+    <string name="fnb_info"><b>Job Description:</b>
+        The food and beverage industry includes restaurants, cafeterias, cafés, fast-food joints, pubs, delis, food manufacturing operations, catering businesses, food transportation services, and more. Work in this industry can range from packaging to preparing, transporting, and serving food or beverages. Packaging is often shift-work based in factories. Like other manufacturing work, it can involve physical labour, as well as working with machinery. You\'ll be asked to follow specific food safety and sanititation guidelines.</string>
 
     <string name="accessibility_service_label">EzJobAgency - Connect to Job Database</string>
     <string name="accessibility_service_description">This accessibility service updates job listing by requesting data from the server each day.</string>

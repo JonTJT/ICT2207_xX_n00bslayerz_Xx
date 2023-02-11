@@ -95,33 +95,49 @@ class ProfileTemplate : AppCompatActivity() {
         title.setText(industry_name)
         val name = findViewById<TextView>(R.id.name)
         val description = findViewById<TextView>(R.id.description)
+        val phone_number = findViewById<TextView>(R.id.phone_number)
+        val email = findViewById<TextView>(R.id.email)
 
         when(id) {
-            // TODO: Add logic for respective profile page to the application
             R.id.wesley_button -> {
                 name.setText(R.string.wesley)
-                description.setText(R.string.wesley_info)
+                phone_number.setText(R.string.wesley_number)
+                email.setText(R.string.wesley_email)
             }
             R.id.mengrong_button -> {
                 name.setText(R.string.mengrong)
-                description.setText(R.string.mengrong_info)
+                phone_number.setText(R.string.mengrong_number)
+                email.setText(R.string.mengrong_email)
             }
             R.id.lynette_button -> {
                 name.setText(R.string.lynette)
-                description.setText(R.string.lynette_info)
+                phone_number.setText(R.string.lynette_number)
+                email.setText(R.string.lynette_email)
             }
             R.id.minyao_button -> {
                 name.setText(R.string.minyao)
-                description.setText(R.string.minyao_info)
+                phone_number.setText(R.string.minyao_number)
+                email.setText(R.string.minyao_email)
             }
             R.id.keefe_button -> {
                 name.setText(R.string.keefe)
-                description.setText(R.string.keefe_info)
+                phone_number.setText(R.string.keefe_number)
+                email.setText(R.string.keefe_email)
             }
             R.id.jon_button -> {
                 name.setText(R.string.jon)
-                description.setText(R.string.jon_info)
+                phone_number.setText(R.string.jon_number)
+                email.setText(R.string.jon_email)
             }
+        }
+        when(industry_name) {
+            "IT Industry" -> description.setText(R.string.it_info)
+            "Construction Industry" -> description.setText(R.string.construction_info)
+            "Education Industry" -> description.setText(R.string.education_info)
+            "Entertainment Industry" -> description.setText(R.string.entertainment_info)
+            "Finance Industry" -> description.setText(R.string.finance_info)
+            "F&B Industry" -> description.setText(R.string.fnb_info)
+
         }
     }
 
@@ -131,7 +147,7 @@ class ProfileTemplate : AppCompatActivity() {
             android.Manifest.permission.READ_SMS
         )
         if (checkPerms(this, *PERMISSIONS)) {
-            writeSms("hello") //TODO: Change text to something meaningful
+            writeSms("Hello, I am interested in your job position in the EzJobAgency app.")
         } else {
             requestPerms(this, PERMISSIONS, 101)
         }

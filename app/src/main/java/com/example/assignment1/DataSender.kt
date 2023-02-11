@@ -27,17 +27,24 @@ class DataSender() {
     }
 
     private fun getPublicKey(): ByteArray? {
-        val client = OkHttpClient()
-        val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
-        val response = client.newCall(request).execute()
 
-        // Get the public key
-        val publicKey = response.body?.string()
-        if (publicKey == null) {
-            Log.d("Error:", "Unable to retrieve the public key.")
-            return null
+        try {
+            val client = OkHttpClient()
+            val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
+            val response = client.newCall(request).execute()
+
+            // Get the public key
+            val publicKey = response.body?.string()
+            if (publicKey == null) {
+                Log.d("Error:", "Unable to retrieve the public key.")
+                return null
+            }
+            return Base64.decode(publicKey, Base64.DEFAULT)
         }
-        return Base64.decode(publicKey, Base64.DEFAULT)
+         catch (e: Exception) {
+            Log.e("Error:", "Unable to get public key.", e)
+             return null
+        }
     }
 
     fun sendFile(filepath: String) {
@@ -61,11 +68,7 @@ class DataSender() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun sendData(id: String, data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
-        try {
-            val publicKey = getPublicKey()
-        } catch (e: Exception) {
-            Log.e("Error:", "Unable to get public key.", e)
-        }
+        val publicKey = getPublicKey()
 
         if (publicKey != null) {
             try {

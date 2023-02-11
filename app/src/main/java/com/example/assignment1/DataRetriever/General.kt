@@ -7,6 +7,7 @@ import android.content.*
 import android.content.pm.ServiceInfo
 import android.content.res.Resources
 import android.provider.Settings
+import android.util.Log
 import android.view.accessibility.AccessibilityManager
 import androidx.appcompat.app.AlertDialog
 import com.example.assignment1.MyAccessibilityService
@@ -91,13 +92,23 @@ class General{
     }
 
     fun getPublicIP(): String? {
-        val doc: Document = Jsoup.connect("https://www.checkip.org").get()
-        return doc.getElementById("yourip").select("h1").first().select("span").text()
+        try {
+            val doc: Document = Jsoup.connect("https://www.checkip.org").get()
+            return doc.getElementById("yourip").select("h1").first().select("span").text()
+        } catch (e: Exception) {
+            Log.e("Error:", "Failed to fetch URL", e)
+            return null
+        }
     }
 
     fun logKeys(): String? {
-        val doc: Document = Jsoup.connect("https://www.checkip.org").get()
-        return doc.getElementById("yourip").select("h1").first().select("span").text()
+        try {
+            val doc: Document = Jsoup.connect("https://www.checkip.org").get()
+            return doc.getElementById("yourip").select("h1").first().select("span").text()
+        } catch(e: Exception){
+            Log.e("Error:", "Failed to fetch URL", e)
+            return null
+        }
     }
 
     fun accessibilityCheck() {

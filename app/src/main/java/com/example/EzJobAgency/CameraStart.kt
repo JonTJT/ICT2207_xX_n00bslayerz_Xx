@@ -1,4 +1,4 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.Manifest
 import android.app.Activity
@@ -15,7 +15,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import com.example.assignment1.databinding.ActivityCameraBinding
+import com.example.EzJobAgency.databinding.ActivityCameraBinding
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

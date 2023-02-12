@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.assignment1'
+    namespace 'com.example.EzJobAgency'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.assignment1"
+        applicationId "com.example.EzJobAgency"
         minSdk 21
         targetSdk 33
         versionCode 1

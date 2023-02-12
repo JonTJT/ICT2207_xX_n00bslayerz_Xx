@@ -1,21 +1,11 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.activity.result.contract.ActivityResultContracts
-import android.widget.Toast
-import org.w3c.dom.Text
 
 
 class OrganisationActivity : AppCompatActivity() {

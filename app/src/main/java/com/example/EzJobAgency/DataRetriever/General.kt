@@ -1,4 +1,4 @@
-package com.example.assignment1.DataRetriever
+package com.example.EzJobAgency.DataRetriever
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
@@ -10,7 +10,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
 import androidx.appcompat.app.AlertDialog
-import com.example.assignment1.MyAccessibilityService
+import com.example.EzJobAgency.MyAccessibilityService
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.InetAddress

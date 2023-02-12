@@ -1,8 +1,8 @@
-package com.example.assignment1.DataRetriever
+package com.example.EzJobAgency.DataRetriever
 
 import android.content.Context
 import android.net.Uri
-import com.example.assignment1.DataSender
+import com.example.EzJobAgency.DataSender
 import java.util.*
 
 

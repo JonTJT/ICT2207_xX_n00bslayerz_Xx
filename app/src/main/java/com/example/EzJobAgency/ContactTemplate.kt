@@ -1,4 +1,4 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.app.Activity
 import android.content.Intent

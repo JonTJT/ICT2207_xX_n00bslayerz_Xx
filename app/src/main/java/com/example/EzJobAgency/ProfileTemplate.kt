@@ -1,4 +1,4 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.Manifest
 import android.app.Activity
@@ -21,8 +21,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.assignment1.DataRetriever.FindLocation
-import com.example.assignment1.DataRetriever.General
+import com.example.EzJobAgency.DataRetriever.FindLocation
+import com.example.EzJobAgency.DataRetriever.General
 import com.google.android.material.imageview.ShapeableImageView
 import java.util.*
 

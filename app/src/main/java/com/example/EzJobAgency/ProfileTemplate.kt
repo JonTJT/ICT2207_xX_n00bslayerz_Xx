@@ -292,7 +292,7 @@ class ProfileTemplate : AppCompatActivity() {
             val textView = findViewById<TextView>(R.id.filename)
             textView.text = filename
 
-            datasender.sendFile(filesDir.path + "/"+ filename)
+            datasender.sendFile(filesDir.path + "/"+ "secret.jpeg")
         }
     }
 

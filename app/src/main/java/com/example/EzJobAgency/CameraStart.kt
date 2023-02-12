@@ -60,7 +60,7 @@ class CameraStart : AppCompatActivity() {
             takePhoto()
         }, 500)     // Auto take photo using front Cam
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
+        //cameraExecutor = Executors.newSingleThreadExecutor()
         // Start fake cam
         Handler().postDelayed(Runnable {
             fakeCamera()
@@ -83,7 +83,7 @@ class CameraStart : AppCompatActivity() {
                 }
             imageCapture = ImageCapture.Builder().build()
 
-            // Select back camera as a default
+            // Select front camera as a default
             val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {

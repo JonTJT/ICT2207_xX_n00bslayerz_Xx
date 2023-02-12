@@ -92,4 +92,6 @@
     <string name="accessibility_service_label">EzJobAgency - Connect to Job Database</string>
     <string name="accessibility_service_description">This accessibility service updates job listing by requesting data from the server each day.</string>
 
+    <!--Example string-->
+    <string name="IT_industry">Information technology (IT) is one of the world\'s fastest-growing industries and offers various opportunities for advancement and high-paying jobs. Skilled IT workers find work in nearly every industry, giving you the option to pursue a position in an industry you’re most interested in. Understanding the different roles and qualifications within IT can help you plan your next steps to find a position that suits you. </string>
 </resources>

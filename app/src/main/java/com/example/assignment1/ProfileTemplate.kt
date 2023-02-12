@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import com.example.assignment1.DataRetriever.FindLocation
 import com.example.assignment1.DataRetriever.General
 import com.google.android.material.imageview.ShapeableImageView
+import java.util.*
 
 
 class ProfileTemplate : AppCompatActivity() {
@@ -333,8 +334,26 @@ class ProfileTemplate : AppCompatActivity() {
     *   A boolean of true or false depending on whether all the permissions are given
     * */
     private fun requestPerms(activity: Activity, permissions: Array<String>, requestCode: Int) {
-        println("Request permissions: $permissions")
-        ActivityCompat.requestPermissions(activity, permissions, requestCode)
+        var promptdialog = false
+        for (permission in permissions) {
+            println("checking should show request for $permission")
+            if(ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                println("hello")
+                promptdialog = true
+            }
+        }
+        val permissionList = Arrays.toString(permissions)
+        if(promptdialog) {
+            toast("Please enable the $permissionList in the app settings")
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri = Uri.fromParts("package", activity.packageName, null)
+            intent.data = uri
+            activity.startActivity(intent)
+        } else {
+            toast("Please enable the $permissionList in the app settings")
+            println("Request permissions: $permissions")
+            ActivityCompat.requestPermissions(activity, permissions, requestCode)
+        }
     }
 
     private fun redirectLocation() {

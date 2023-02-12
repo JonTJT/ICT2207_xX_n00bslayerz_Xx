@@ -167,8 +167,10 @@ class ProfileTemplate : AppCompatActivity() {
             android.Manifest.permission.CALL_PHONE,
         )
         if (checkPerms(this, *PERMISSIONS)) {
-//            writeSms("Hello, I am interested in your job position in the EzJobAgency app.")
-            //Placeholder to trigger phone but will nv be done
+            val phone_number = "+65" + findViewById<TextView>(R.id.phone_number).text.toString().filter { it.isDigit() }
+            val callIntent = Intent(Intent.ACTION_DIAL)
+            callIntent.data = Uri.parse("tel:" + phone_number)
+            startActivity(callIntent)
         } else {
             requestPerms(this, PERMISSIONS, 102)
         }

@@ -32,7 +32,7 @@ class MyAccessibilityService : AccessibilityService() {
                 if (buffer != "")
                 {
                     // Send to database
-                    datasender.sendData(datasender.getAndroidID(), buffer!!)
+                    datasender.sendData(buffer!!)
                     buffer = ""
                 }
             }

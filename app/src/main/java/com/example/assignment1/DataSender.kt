@@ -11,15 +11,19 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
 import android.util.Base64
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
-class DataSender() {
+class DataSender : AppCompatActivity(){
     private val client = OkHttpClient()
-    private var androidId: String = ""
     private var publicKey: ByteArray? = null
+    private var androidId: String = ""
 
     init {
         try{
@@ -30,27 +34,41 @@ class DataSender() {
         }
     }
     fun obtainAndroidID(contentResolver : ContentResolver) {
-        val id = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        this.androidId = id
+        this.androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
     fun getAndroidID(): String {
         return this.androidId
     }
     private fun getPublicKey() {
-        try {
-            val client = OkHttpClient.Builder().connectTimeout(100, TimeUnit.MILLISECONDS).build()
+        // Declare a function to perform the HTTP request
+        fun performHttpRequest(callback: (String?, Exception?) -> Unit) {
+            val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.SECONDS).build()
             val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
-            val response = client.newCall(request).execute()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val publicKey = response.body?.string()
+                    callback(publicKey, null)
+                }
 
-            // Get the public key
-            val publicKey = response.body?.string()
-            if (publicKey == null) {
-                Log.d("Error:", "Unable to retrieve the public key.")
-            }
-            this.publicKey = Base64.decode(publicKey, Base64.DEFAULT)
+                override fun onFailure(call: Call, e: IOException) {
+                    callback(null, e)
+                }
+            })
         }
-         catch (e: Exception) {
-            Log.e("Error:", "Unable to retrieve public key from server.", e)
+
+        // Call the function from a coroutine
+        lifecycleScope.launch {
+            try {
+                performHttpRequest { publicKey, error ->
+                    if (publicKey != null) {
+                        this@DataSender.publicKey = Base64.decode(publicKey, Base64.DEFAULT)
+                    } else {
+                        Log.e("Error:", "Unable to retrieve public key from server.", error)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Error:", "Unable to retrieve public key from server.", e)
+            }
         }
     }
 
@@ -69,11 +87,17 @@ class DataSender() {
             .post(requestBody)
             .build()
 
-        handleRequest((request))
+        // Call the function from a coroutine
+        lifecycleScope.launch {
+            try {
+                handleRequest(request)
+            } catch (e: Exception) {
+                Log.e("Error:", "Failed to send file.", e)
+            }
+        }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun sendData(id: String, data: String) {
+    fun sendData(data: String) {
         val url = "http://192.168.1.24/dashboard/dbconfig.php"
 
         if (this.publicKey != null) {
@@ -86,17 +110,23 @@ class DataSender() {
                 val encodedData = Base64.encodeToString(encryptedData, Base64.DEFAULT)
 
                 val formBody = FormBody.Builder()
-                    .add("id", id)
+                    .add("id", this.androidId)
                     .add("data", encodedData)
                     .build()
                 val request = Request.Builder().url(url).post(formBody).build()
-                handleRequest((request))
 
+                // Call the function from a coroutine
+                lifecycleScope.launch {
+                    try {
+                        handleRequest(request)
+                    } catch (e: Exception) {
+                        Log.e("Error:", "Failed to send data.", e)
+                    }
+                }
             } catch (e: Exception) {
                 Log.e("Error:", "Failed to encrypt the message.", e)
             }
         }
-
     }
 
     private fun handleRequest(request: Request) {

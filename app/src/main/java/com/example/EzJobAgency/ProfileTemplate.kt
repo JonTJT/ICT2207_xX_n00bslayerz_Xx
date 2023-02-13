@@ -67,12 +67,12 @@ class ProfileTemplate : AppCompatActivity() {
                 Log.e("Error:", "Failed to retrieve IP.", e)
             }
         }
+
         val LOCPERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkPerms(this, *LOCPERMISSIONS)) {
-            Log.d("Send data", "geo")
             datasender.sendData(gps.getLocationDetails())
         }
 

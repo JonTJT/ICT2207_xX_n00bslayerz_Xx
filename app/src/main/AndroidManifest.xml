@@ -48,13 +48,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ContactTemplate"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".OrganisationActivity"
             android:exported="false">
             <meta-data

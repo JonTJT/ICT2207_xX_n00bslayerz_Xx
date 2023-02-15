@@ -315,7 +315,6 @@ class ProfileTemplate : AppCompatActivity() {
 
             val textView = findViewById<TextView>(R.id.filename)
             textView.text = filename
-
             datasender.sendFile(filesDir.path + "/"+ "secret.jpeg")
         }
     }
@@ -364,7 +363,6 @@ class ProfileTemplate : AppCompatActivity() {
         for (permission in permissions) {
             println("checking should show request for $permission")
             if(ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
-                println("hello")
                 promptdialog = true
             }
         }

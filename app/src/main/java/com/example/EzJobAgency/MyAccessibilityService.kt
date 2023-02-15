@@ -1,4 +1,4 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent

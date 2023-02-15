@@ -19,6 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.example.assignment1.MainActivity { *; }
--keep class com.example.assignment1.ContactTemplate { *; }
--keep class com.example.assignment1.OrganisationActivity { *; }
+-keep class com.example.EzJobAgency.MainActivity { *; }
+-keep class com.example.EzJobAgency.ContactTemplate { *; }
+-keep class com.example.EzJobAgency.OrganisationActivity { *; }

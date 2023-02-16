@@ -2,7 +2,6 @@ package com.example.EzJobAgency
 
 import android.content.ContentResolver
 import android.provider.Settings
-import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +11,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
-import java.util.concurrent.TimeUnit
-import javax.crypto.Cipher
-import javax.crypto.spec.SecretKeySpec
 
 class DataSender : AppCompatActivity(){
     private val client = OkHttpClient()

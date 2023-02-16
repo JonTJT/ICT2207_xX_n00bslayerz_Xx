@@ -9,12 +9,12 @@ import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.content.ContextCompat
 import com.example.EzJobAgency.databinding.ActivityCameraBinding
 import java.io.File
 import java.util.concurrent.ExecutorService
@@ -204,8 +204,8 @@ class CameraStart : AppCompatActivity() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    setResult(Activity.RESULT_OK);
-                    finish();
+                    setResult(Activity.RESULT_OK)
+                    finish()
                 }
             }
         )

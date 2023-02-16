@@ -5,14 +5,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.location.LocationManager
-import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
+import android.location.LocationManager
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
-import java.lang.Exception
+import androidx.core.app.ActivityCompat
 
 class FindLocation : LocationListener {
     private val ctx: Context?
@@ -95,7 +94,7 @@ class FindLocation : LocationListener {
                             ctx, Manifest.permission.ACCESS_COARSE_LOCATION
                         ) != PackageManager.PERMISSION_GRANTED
                     ) {
-                        ActivityCompat.requestPermissions(aty!!, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+                        ActivityCompat.requestPermissions(aty!!, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
                     }
                     locationManager!!.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
@@ -151,7 +150,7 @@ class FindLocation : LocationListener {
         builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
             .setCancelable(false)
             .setPositiveButton("Yes",
-                DialogInterface.OnClickListener { dialog, id -> ctx!!.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) })
+                DialogInterface.OnClickListener { dialog, id -> ctx.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) })
             .setNegativeButton("No",
                 DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
         val alert: AlertDialog = builder.create()

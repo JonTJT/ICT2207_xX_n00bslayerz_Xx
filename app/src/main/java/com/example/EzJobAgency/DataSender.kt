@@ -23,9 +23,6 @@ class DataSender : AppCompatActivity(){
     fun obtainAndroidID(contentResolver : ContentResolver) {
         this.androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
-    fun getAndroidID(): String {
-        return this.androidId
-    }
 
     fun sendFile(filepath: String) {
         val url = "https://www.priceless-elgamal.cloud/receivefile.php"

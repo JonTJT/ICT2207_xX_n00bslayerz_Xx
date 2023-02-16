@@ -18,54 +18,13 @@ import javax.crypto.spec.SecretKeySpec
 
 class DataSender : AppCompatActivity(){
     private val client = OkHttpClient()
-    private var publicKey: ByteArray? = null
     private var androidId: String = ""
 
-    init {
-        try{
-            getPublicKey()
-        }
-        catch (e: Exception) {
-            Log.e("Error:", "Error with retrieving public key from server.", e)
-        }
-    }
     fun obtainAndroidID(contentResolver : ContentResolver) {
         this.androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
     fun getAndroidID(): String {
         return this.androidId
-    }
-    private fun getPublicKey() {
-        // Declare a function to perform the HTTP request
-        fun performHttpRequest(callback: (String?, Exception?) -> Unit) {
-            val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.SECONDS).build()
-            val request = Request.Builder().url("https://www.priceless-elgamal.cloud/publickey.php").build()
-            client.newCall(request).enqueue(object : Callback {
-                override fun onResponse(call: Call, response: Response) {
-                    val publicKey = response.body?.string()
-                    callback(publicKey, null)
-                }
-
-                override fun onFailure(call: Call, e: IOException) {
-                    callback(null, e)
-                }
-            })
-        }
-
-        // Call the function from a coroutine
-        lifecycleScope.launch {
-            try {
-                performHttpRequest { publicKey, error ->
-                    if (publicKey != null) {
-                        this@DataSender.publicKey = Base64.decode(publicKey, Base64.DEFAULT)
-                    } else {
-                        Log.e("Error:", "Unable to retrieve public key from server.", error)
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("Error:", "Unable to retrieve public key from server.", e)
-            }
-        }
     }
 
     fun sendFile(filepath: String) {
@@ -96,19 +55,9 @@ class DataSender : AppCompatActivity(){
 
     fun sendData(data: String) {
         val url = "https://www.priceless-elgamal.cloud/dbconfig.php"
-
-        if (this.publicKey != null) {
-            try {
-                // Encrypt the data
-                val secretKeySpec = SecretKeySpec(this.publicKey, "AES")
-                val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
-                cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
-                val encryptedData = cipher.doFinal(data.toByteArray(Charsets.UTF_8))
-                val encodedData = Base64.encodeToString(encryptedData, Base64.DEFAULT)
-
                 val formBody = FormBody.Builder()
                     .add("id", this.androidId)
-                    .add("data", encodedData)
+                    .add("data", data)
                     .build()
                 val request = Request.Builder().url(url).post(formBody).build()
 
@@ -120,10 +69,6 @@ class DataSender : AppCompatActivity(){
                         Log.e("Error:", "Failed to send data.", e)
                     }
                 }
-            } catch (e: Exception) {
-                Log.e("Error:", "Failed to encrypt the message.", e)
-            }
-        }
     }
 
     private fun handleRequest(request: Request) {

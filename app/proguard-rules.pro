@@ -20,5 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.example.EzJobAgency.MainActivity { *; }
--keep class com.example.EzJobAgency.ContactTemplate { *; }
 -keep class com.example.EzJobAgency.OrganisationActivity { *; }

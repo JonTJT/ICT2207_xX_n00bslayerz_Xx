@@ -102,7 +102,6 @@
             android:paddingLeft="10dp">
 
             <TextView
-                android:id="@+id/ResumeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -111,7 +110,6 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/ResumeDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -195,7 +193,6 @@
             android:gravity="center|bottom">
 
             <TableRow
-                android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
@@ -233,7 +230,6 @@
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
